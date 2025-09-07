@@ -23,6 +23,9 @@ vim.g.maplocalleader = "é"
 
 -- Setup lazy.nvim
 require("lazy").setup({
+  rocks = {
+    enabled = false,
+  },
   spec = {
     -- import your plugins
     { import = "plugins" },

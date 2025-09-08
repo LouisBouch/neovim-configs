@@ -19,16 +19,6 @@
 ---    "<unique>"
 ---    "<remap>"
 
----List of key mappings
----@type Keymap[]
-local mappings = {
-  -- Normal mode
-  -- Visual mode
-  -- Insert mode
-  { mode = "i", lhs = "<C-l>", rhs = "<Del>" },
-  -- All modes
-  { mode = "", lhs = "<Space>", rhs = "<Nop>" },
-}
 ---Create mappings
 ---@param keymaps Keymap[]
 local function applyKeymaps(keymaps)
@@ -36,18 +26,38 @@ local function applyKeymaps(keymaps)
   vim.api.nvim_create_augroup("ft_keymaps", { clear = true })
   for _, keymap in ipairs(keymaps) do
     if keymap.ft ~= nil then
-    -- For when the keymap has been defined for specific filetypes.
+      -- For when the keymap has been defined for specific filetypes.
       vim.api.nvim_create_autocmd("FileType", {
         pattern = keymap.ft,
         group = "ft_keymaps",
-        callback = function()
-          vim.keymap.set(keymap.mode, keymap.lhs, keymap.rhs, keymap.opts or {})
+        callback = function(event)
+          local opts = keymap.opts or {}
+          opts.buffer = event.buf
+          vim.keymap.set(keymap.mode, keymap.lhs, keymap.rhs, opts)
         end,
       })
     else
-    -- For when the keymap has not been defined for specific filetypes.
+      -- For when the keymap has not been defined for specific filetypes.
       vim.keymap.set(keymap.mode, keymap.lhs, keymap.rhs, keymap.opts or {})
     end
   end
 end
+
+---List of key mappings
+---@type Keymap[]
+local mappings = {
+  -- Normal mode
+  -- Visual mode
+  -- Insert mode
+  { mode = "i", lhs = "<C-l>", rhs = "<Del>" },
+  { mode = "i", lhs = "<C-j>", rhs = "<Enter>" },
+  { mode = "i", lhs = "<C-h>", rhs = "<BS>" },
+  { mode = "i", lhs = "<C-d>", rhs = "<Space><Esc>ce" },
+
+  -- All modes (except insert I believe)
+  { mode = "", lhs = "<Space>", rhs = "<Nop>" },
+  { mode = "", lhs = "<C-d>", rhs = "<C-d>zz" },
+  { mode = "", lhs = "<C-u>", rhs = "<C-u>zz" },
+  { mode = "", lhs = "<C-j>", rhs = "<Enter>" },
+}
 applyKeymaps(mappings)

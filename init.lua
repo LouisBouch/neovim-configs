@@ -1,5 +1,6 @@
-require("utils.printTable")
+require("meta.init")
 require("config.options")
 require("config.lazy")
 require("config.keymaps")
--- require("config.autocmds")
+require("config.commands")
+require("config.autocmds")

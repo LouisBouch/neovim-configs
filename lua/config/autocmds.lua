@@ -24,13 +24,3 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   pattern = "*",
   command = "silent! loadview",
 })
-
--- -- Comment strings
-vim.api.nvim_create_augroup("comment_strings", { clear = true })
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "comment_strings",
-  pattern = { "cpp" },
-  callback = function()
-    vim.opt_local.commentstring = "// %s"
-  end,
-})

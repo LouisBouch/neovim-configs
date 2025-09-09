@@ -4,6 +4,7 @@ return {
   category = meta_h.categories.ui,
   opts = {
     options = {
+      globalstatus = false,
       icons_enabled = true,
       theme = "auto",
       component_separators = { left = "", right = "" },

@@ -6,17 +6,55 @@
 ---@class Categories
 ---@field colorscheme Category
 ---@field ui Category
+---@field coding Category
+---@field editor Category
+---@field formatting Category
+---@field linting Category
+---@field lsp Category
+---@field treesitter Category
 ---@field other Category
----@field movement Category
 
 ---Defines possible categories for the plugins.
 ---The key represents the category and the value represents what title will be used in the README.
 ---Names are defined later to avoid having to type the category name twice.
 ---@type Categories
 local cat_def = {
-  colorscheme = { category = "", desc = "Color Palettes" },
-  ui = { category = "", desc = "User Interface" },
-  movement = { category = "", desc = "Cursor movement related plugins" },
+  colorscheme = {
+    category = "",
+    desc = "Provide color palettes to be chosen from when opening a neovim sessions.",
+  },
+  ui = {
+    category = "",
+    desc = "UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.",
+  },
+  coding = {
+    category = "",
+    desc = "Coding: Allow faster coding with features such as snippets, autocompletion, and more.",
+  },
+  editor = {
+    category = "",
+    desc = "Editor: Provide functionality like a file explorer, search and replace, fuzzy finding, git integration.",
+  },
+  lsp = {
+    category = "",
+    desc = "LSP: Configure the Language Server Protocol (LSP) client.",
+  },
+  formatting = {
+    category = "",
+    desc = "Formatting: Set up formatters using *conform.nvim*.",
+  },
+  linting = {
+    category = "",
+    desc = "Linting: Manage linters with the *nvim-lint* plugin.",
+  },
+  treesitter = {
+    category = "",
+    desc = "Treesitter: Provide advanced syntax highlighting and plugins that use Treesitter parsers.",
+  },
+  util = {
+    category = "",
+    desc = "Util: Contains utilities for session management, shared functionality, and other handy tools.",
+  },
   other = {
     category = "",
     desc = "Others (mostly dependencies from other plugins)",
@@ -91,12 +129,19 @@ end
 -- Each consecutive item in the table is a markdown line.
 local function to_md_table(plug_table)
   local formatted_lines = {}
+  -- Given a plugin, convert it into a text entry
+  local function to_entry(plugin)
+    local pname = plugin.name
+    local pid = plugin.id
+    return string.format("[%s](https://github.com/%s)", pname, pid)
+  end
   -- Converts a single category of plugins into the markdown table.
   local function category_to_md(plugins)
     local category_desc = plugins.desc
     -- The prefix for the category header.
-    local prefix = "## "
+    local prefix = "### "
     table.insert(formatted_lines, prefix .. category_desc)
+    table.insert(formatted_lines, "")
 
     -- Sort category's plugins by name.
     table.sort(plugins, function(a, b)
@@ -105,7 +150,7 @@ local function to_md_table(plug_table)
     for _, plugin in ipairs(plugins) do
       -- Prefix for the plugin entry.
       prefix = "- "
-      table.insert(formatted_lines, prefix .. plugin.name)
+      table.insert(formatted_lines, prefix .. to_entry(plugin))
 
       -- Sort plugin's dependencies by name.
       table.sort(plugin.dependencies, function(a, b)
@@ -114,7 +159,7 @@ local function to_md_table(plug_table)
       for _, dep in ipairs(plugin.dependencies) do
         -- Prefix for dependency entry.
         prefix = "  - "
-        table.insert(formatted_lines, prefix .. dep.name)
+        table.insert(formatted_lines, prefix .. to_entry(dep))
       end
     end
   end

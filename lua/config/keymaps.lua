@@ -2,7 +2,7 @@
 
 ---A keymap object containing all fields necessary for applying a keymap.
 ---@class Keymap
----@field mode string|string[] Mode "short-name" (see |nvim_set_keymap()|), or a list thereof.
+---@field mode string|string[] Mode "short-name" (see nvim_set_keymap or map-modes).
 ---@field lhs string           Left-hand side {lhs} of the mapping.
 ---@field rhs string|function  Right-hand side {rhs} of the mapping, can be a Lua function.
 ---@field ft? string|string[]  Filetypes for which the command is set.
@@ -46,18 +46,22 @@ end
 ---List of key mappings
 ---@type Keymap[]
 local mappings = {
-  -- Normal mode
-  -- Visual mode
-  -- Insert mode
-  { mode = "i", lhs = "<C-l>", rhs = "<Del>" },
-  { mode = "i", lhs = "<C-j>", rhs = "<Enter>" },
-  { mode = "i", lhs = "<C-h>", rhs = "<BS>" },
-  { mode = "i", lhs = "<C-d>", rhs = "<Space><Esc>ce" },
+  -- Insert, Command and Terminal modes
+  { mode = { "i", "c", "t" }, lhs = "<C-l>", rhs = "<Del>" },
+  { mode = { "i", "c", "t" }, lhs = "<C-h>", rhs = "<BS>" },
+  {
+    mode = { "i" },
+    lhs = "<C-d>",
+    rhs = "<Space><Esc>ce",
+    opts = { desc = "Simulates ctrl-delete" },
+  },
 
-  -- All modes (except insert I believe)
-  { mode = "", lhs = "<Space>", rhs = "<Nop>" },
-  { mode = "", lhs = "<C-d>", rhs = "<C-d>zz" },
-  { mode = "", lhs = "<C-u>", rhs = "<C-u>zz" },
-  { mode = "", lhs = "<C-j>", rhs = "<Enter>" },
+  -- Normal and Visual modes
+  { mode = {"n", "v"}, lhs = "<Space>", rhs = "<Nop>" },
+  { mode = {"n", "v"}, lhs = "<C-d>", rhs = "<C-d>zz" },
+  { mode = {"n", "v"}, lhs = "<C-u>", rhs = "<C-u>zz" },
+
+  -- Others
+  { mode = { "i", "o", "c", "t" }, lhs = "<C-j>", rhs = "<Enter>" },
 }
 applyKeymaps(mappings)

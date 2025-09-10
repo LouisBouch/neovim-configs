@@ -1,6 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  event = "VeryLazy",
   category = meta_h.categories.ui,
   opts = {
     options = {
@@ -18,9 +19,16 @@ return {
           "filename",
           color = { fg = "", gui = "bold" },
         },
-        { "filetype" },
       },
-      lualine_x = {},
+      lualine_x = {
+        -- Moves the messages that used to appear in the command line in
+        -- lualine instead.
+        {
+          require("noice").api.status.command.get,
+          cond = require("noice").api.status.command.has,
+          color = { fg = "#ff9e64" },
+        },
+      },
       lualine_y = {
         { "progress", separator = " ", padding = { left = 1, right = 0 } },
         { "location", padding = { left = 0, right = 1 } },

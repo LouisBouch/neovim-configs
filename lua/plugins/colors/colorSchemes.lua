@@ -12,15 +12,31 @@ local function map(table, f)
 end
 -- List of color schemes
 local colorSchemes = {
-  { { "folke/tokyonight.nvim" }, variants = { "tokyonight-moon", "tokyonight-night", "tokyonight-storm" } },
+  {
+    { "folke/tokyonight.nvim" },
+    variants = { "tokyonight-moon", "tokyonight-night", "tokyonight-storm" },
+  },
   { { "ellisonleao/gruvbox.nvim" }, variants = { "gruvbox" } },
   {
     { "catppuccin/nvim", name = "catppuccin" },
-    variants = { "catppuccin-frappe", "catppuccin-macchiato", "catppuccin-mocha" },
+    variants = {
+      "catppuccin-frappe",
+      "catppuccin-macchiato",
+      "catppuccin-mocha",
+    },
   },
-  { { "rebelot/kanagawa.nvim" }, variants = { "kanagawa-dragon", "kanagawa-wave" } },
-  { { "EdenEast/nightfox.nvim" }, variants = { "nightfox", "duskfox", "nordfox", "terafox", "carbonfox" } },
-  { { "rose-pine/neovim", name = "rose-pine" }, variants = { "rose-pine-main", "rose-pine-moon" } },
+  {
+    { "rebelot/kanagawa.nvim" },
+    variants = { "kanagawa-dragon", "kanagawa-wave" },
+  },
+  {
+    { "EdenEast/nightfox.nvim" },
+    variants = { "nightfox", "duskfox", "nordfox", "terafox", "carbonfox" },
+  },
+  {
+    { "rose-pine/neovim", name = "rose-pine" },
+    variants = { "rose-pine-main", "rose-pine-moon" },
+  },
   { { "navarasu/onedark.nvim" }, variants = { "onedark" } },
   { { "sainnhe/gruvbox-material" }, variants = { "gruvbox-material" } },
 }

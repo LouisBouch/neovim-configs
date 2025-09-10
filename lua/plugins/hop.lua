@@ -92,7 +92,6 @@ return {
       -- TODO: create an issue?
       ---@diagnostic disable-next-line: redundant-parameter
       local reg = vim.fn.getreg("+", 0, true)
-      -- reg = reg:gsub("\n$", "")
       vim.fn.setreg("+", reg, "v")
     end, {
       desc = "Yank from afar",

@@ -1,3 +1,40 @@
+# Neovim configs to replace <sup><sub><sub><sub>*almost*</sub></sub></sup> all editors
+
+These configs aim to include any essential feature that could be expected from an editor alongside the benefits of using vim motions.  
+This includes:
+
+- **Language servers** (Uses the language server protocol "LSP" to give autocompletion/hints for your code.)
+- **Formatting**
+- **Linting** (Tool to analyze code and flag potential problems.)
+- **Debuggers** (Uses the debugging adapter protocol "DAP" to allow debugging of running code.)
+- **Tree-sitters** (Builds syntax trees to help with code navigation and indentation.)
+- **File editor**
+- **Fuzzy finder** (Allows to search for files quicker through approximate string matching.)
+- **Colorschemes**
+- **And much more!**
+
+## Adding languages
+
+To add full compatibility with a specific language, the following steps usually suffice:
+
+- Add the **language parser** to the tree-sitter
+- Add a **language server** using mason
+- Add a **formatter** using mason
+- Add a **linter** using mason
+- Add a **debugger** server using mason
+
+These steps can be omitted at the cost of their functionality, but language servers and tree-sitters are *highly* recommended.  
+Unfortunately, not all languages are as easy to setup, and some require extra plugins to make work.  
+
+## Plugins
+
+The following is a list of plugins separated in different categories.
+
+Note that [snacks.nvim](https://github.com/folke/snacks.nvim) is a repository of many functionalities and not a single plugin.  
+This repository includes:
+
+- [snacks-indent](https://github.com/folke/snacks.nvim/blob/main/docs/indent.md)
+
 ### Provide color palettes to be chosen from when opening a neovim sessions.
 
 - [catppuccin](https://github.com/catppuccin/nvim)
@@ -28,3 +65,10 @@
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [ts-comments.nvim](https://github.com/folke/ts-comments.nvim)
+
+
+### External dependencies
+
+The following external plugins and packages are required in order to achieve full compatibility with these configs.
+
+- [ripgrep](https://github.com/BurntSushi/ripgrep)

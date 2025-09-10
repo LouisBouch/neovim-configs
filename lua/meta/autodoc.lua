@@ -21,7 +21,7 @@
 local cat_def = {
   colorscheme = {
     category = "",
-    desc = "Provide color palettes to be chosen from when opening a neovim sessions.",
+    desc = "Colorschemes: Provide color palettes to be chosen from when opening a neovim sessions.",
   },
   ui = {
     category = "",

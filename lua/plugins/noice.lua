@@ -1,5 +1,6 @@
 return {
   "folke/noice.nvim",
+  category = meta_h.categories.ui,
   event = "VeryLazy",
   -- enabled = false,
   opts = {

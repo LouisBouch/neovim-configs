@@ -57,11 +57,19 @@ local mappings = {
   },
 
   -- Normal and Visual modes
-  { mode = {"n", "v"}, lhs = "<Space>", rhs = "<Nop>" },
-  { mode = {"n", "v"}, lhs = "<C-d>", rhs = "<C-d>zz" },
-  { mode = {"n", "v"}, lhs = "<C-u>", rhs = "<C-u>zz" },
+  { mode = { "n", "v" }, lhs = "<Space>", rhs = "<Nop>" },
+  { mode = { "n", "v" }, lhs = "<C-d>", rhs = "<C-d>zz" },
+  { mode = { "n", "v" }, lhs = "<C-u>", rhs = "<C-u>zz" },
 
   -- Others
-  { mode = { "i", "o", "c", "t" }, lhs = "<C-j>", rhs = "<Enter>" },
+  { mode = { "n", "v", "i", "o", "c", "t" }, lhs = "<A-j>", rhs = "<Enter>" },
+
+  -- Bilingual mappings. Used because ^ is a "dead key"
+  {
+    mode = { "n" },
+    lhs = "ĵ",
+    rhs = "<C-^>",
+    opts = { desc = "Go back to last visited buffer" },
+  },
 }
 applyKeymaps(mappings)

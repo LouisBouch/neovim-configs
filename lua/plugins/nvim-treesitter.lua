@@ -10,6 +10,7 @@ return {
     treesitter.setup({
       -- Ensures language parsers are installed for the following languages
       ensure_installed = {
+        "regex",
         "lua",
         "rust",
         "latex",

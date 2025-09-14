@@ -7,8 +7,18 @@ return {
   category = meta_h.categories.editor,
   dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
   opts = {
+    constrain_cursor = "name",
+    columns = {
+    "icon",
+    "permissions",
+    {"size", highlight = "OilHidden"},
+    {"mtime", highlight = "OilHidden"},
+    {"type", highlight = "OilDir", icons = {file = "|", directory = "|", link = "|"}},
+
+    },
     keymaps = {
       ["<A-j>"] = "actions.select",
+      ["<C-g>"] = "actions.parent",
     },
     view_options = {
       show_hidden = true,
@@ -20,7 +30,7 @@ return {
       get_win_title = function(winid)
         local bufnr = vim.fn.winbufnr(winid)
         local cwd = vim.fn.getcwd(winid)
-        local cur_path = require("oi").get_current_dir(bufnr)
+        local cur_path = require("oil").get_current_dir(bufnr)
         local rel_path = vim.fs.relpath(cwd, cur_path)
         rel_path = ((rel_path ~= nil) and "./" .. rel_path) or cur_path
         rel_path = rel_path:gsub("%.$", "")

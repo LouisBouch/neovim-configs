@@ -60,16 +60,14 @@ local mappings = {
   { mode = { "n", "v" }, lhs = "<Space>", rhs = "<Nop>" },
   { mode = { "n", "v" }, lhs = "<C-d>", rhs = "<C-d>zz" },
   { mode = { "n", "v" }, lhs = "<C-u>", rhs = "<C-u>zz" },
+  { mode = { "n", "v" }, lhs = "j", rhs = "gj" },
+  { mode = { "n", "v" }, lhs = "k", rhs = "gk" },
+  { mode = { "n", "v" }, lhs = "<A-w>", rhs = "100<c-w>+100<c-w>>" }, -- Full size window
+
+  -- Terminal
+  { mode = { "t" }, lhs = "<A-c>", rhs = [[<C-\><C-n>]] },
 
   -- Others
   { mode = { "n", "v", "i", "o", "c", "t" }, lhs = "<A-j>", rhs = "<Enter>" },
-
-  -- Bilingual mappings. Used because ^ is a "dead key"
-  {
-    mode = { "n" },
-    lhs = "ĵ",
-    rhs = "<C-^>",
-    opts = { desc = "Go back to last visited buffer" },
-  },
 }
 applyKeymaps(mappings)

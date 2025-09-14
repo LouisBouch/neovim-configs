@@ -40,6 +40,8 @@ Note that [snacks.nvim](https://github.com/folke/snacks.nvim) is a repository of
 This repository includes:
 
 - [snacks-indent](https://github.com/folke/snacks.nvim/blob/main/docs/indent.md)
+- [snacks-picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
+- [snacks-explorer](https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md)
 
 ### Colorschemes: Provide color palettes to be chosen from when opening a neovim sessions.
 

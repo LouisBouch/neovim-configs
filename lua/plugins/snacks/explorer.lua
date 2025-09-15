@@ -26,14 +26,6 @@ return {
     picker = {
       sources = {
         explorer = {
--- finder = function()
---       local file_paths = {}
---       local list = normalize_list(harpoon:list().items)
---       for i, item in ipairs(list) do
---         table.insert(file_paths, { text = item.value, file = item.value })
---       end
---       return file_paths
---     end,
           win = {
             -- input window
             input = {
@@ -45,7 +37,7 @@ return {
             },
             list = {
               keys = {
-                ["<C-g>"] = { {"explorer_focus"}, mode = { "n", "i" } },
+                ["<C-g>"] = { {"explorer_up"}, mode = { "n", "i" } },
               },
             },
           },
@@ -66,8 +58,6 @@ return {
       function()
         require("snacks").explorer({
           -- finder = function() return {{text= "oi", file = "oi"}} end
-          supports_live = false,
-          follow_file = false,
         })
       end,
       desc = "File Explorer",

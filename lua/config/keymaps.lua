@@ -46,7 +46,9 @@ end
 ---List of key mappings
 ---@type Keymap[]
 local mappings = {
-  -- Insert, Command and Terminal modes
+  { mode = { "n", "v" }, lhs = "<Space>", rhs = "<Nop>" },
+
+  -- Extra deleting commands
   { mode = { "i", "c", "t" }, lhs = "<C-l>", rhs = "<Del>" },
   { mode = { "i", "c", "t" }, lhs = "<C-h>", rhs = "<BS>" },
   {
@@ -56,18 +58,50 @@ local mappings = {
     opts = { desc = "Simulates ctrl-delete" },
   },
 
-  -- Normal and Visual modes
-  { mode = { "n", "v" }, lhs = "<Space>", rhs = "<Nop>" },
+  -- Movement
   { mode = { "n", "v" }, lhs = "<C-d>", rhs = "<C-d>zz" },
   { mode = { "n", "v" }, lhs = "<C-u>", rhs = "<C-u>zz" },
   { mode = { "n", "v" }, lhs = "j", rhs = "gj" },
   { mode = { "n", "v" }, lhs = "k", rhs = "gk" },
   { mode = { "n", "v" }, lhs = "<A-w>", rhs = "100<c-w>+100<c-w>>" }, -- Full size window
 
-  -- Terminal
-  { mode = { "t" }, lhs = "<A-c>", rhs = [[<C-\><C-n>]] },
+  -- Exit terminal mode
+  {
+    mode = { "t" },
+    lhs = "<A-c>",
+    rhs = [[<C-\><C-n>]],
+    opts = { desc = "Normal mode within terminal" },
+  },
 
-  -- Others
+  -- Extra enter mapping
   { mode = { "n", "v", "i", "o", "c", "t" }, lhs = "<A-j>", rhs = "<Enter>" },
+
+  -- Revamping deletion to act like actual deletion and not cutting.
+  -- Add special cutting binding.
+  { mode = { "n", "v" }, lhs = "x", rhs = '"_x' },
+  { mode = { "n", "v" }, lhs = "X", rhs = '"_X' },
+  { mode = { "n", "v" }, lhs = "c", rhs = '"_c' },
+  { mode = { "n", "v" }, lhs = "C", rhs = '"_C' },
+  { mode = { "n", "v" }, lhs = "d", rhs = '"_d' },
+  { mode = { "n", "v" }, lhs = "D", rhs = '"_D' },
+  { mode = { "n", "v" }, lhs = "s", rhs = '"_s' },
+  { mode = { "n", "v" }, lhs = "S", rhs = '"_S' },
+
+  {
+    mode = { "v" },
+    lhs = "p",
+    rhs = "P",
+    opts = { desc = "Don't yank text being replaced" },
+  },
+  {
+    mode = { "v" },
+    lhs = "P",
+    rhs = "p",
+    opts = { desc = "Yank text being replaced" },
+  },
+
+  { mode = { "n", "v" }, lhs = "m", rhs = "d" },
+  { mode = { "n", "v" }, lhs = "M", rhs = "D" },
+  { mode = { "n", "v" }, lhs = "gm", rhs = "m" },
 }
 applyKeymaps(mappings)

@@ -30,14 +30,14 @@ return {
             -- input window
             input = {
               keys = {
-                ["<C-g>"] = { {"explorer_up"}, mode = { "n", "i" } },
-                ["<C-.>"] = { {"explorer_focus"}, mode = { "n", "i" } },
-                ["<C-,>"] = { {"tcd"}, mode = { "n", "i" } },
+                ["<C-g>"] = { { "explorer_up" }, mode = { "n", "i" } },
+                ["<C-.>"] = { { "explorer_focus" }, mode = { "n", "i" } },
+                ["<C-,>"] = { { "tcd" }, mode = { "n", "i" } },
               },
             },
             list = {
               keys = {
-                ["<C-g>"] = { {"explorer_up"}, mode = { "n", "i" } },
+                ["<C-g>"] = { { "explorer_up" }, mode = { "n", "i" } },
               },
             },
           },
@@ -56,9 +56,7 @@ return {
     {
       "<leader>fe",
       function()
-        require("snacks").explorer({
-          -- finder = function() return {{text= "oi", file = "oi"}} end
-        })
+        require("snacks").explorer({})
       end,
       desc = "File Explorer",
     },

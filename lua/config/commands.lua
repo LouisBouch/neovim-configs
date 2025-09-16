@@ -21,12 +21,21 @@ local function applyCommands(commands)
         group = "ft_commands",
         callback = function(event)
           local opts = command.opts or {}
-          vim.api.nvim_buf_create_user_command(event.buf, command.name, command.command, opts)
+          vim.api.nvim_buf_create_user_command(
+            event.buf,
+            command.name,
+            command.command,
+            opts
+          )
         end,
       })
     else
       -- For when the command has not been defined for specific filetypes.
-      vim.api.nvim_create_user_command(command.name, command.command, command.opts or {})
+      vim.api.nvim_create_user_command(
+        command.name,
+        command.command,
+        command.opts or {}
+      )
     end
   end
 end
@@ -38,6 +47,7 @@ local commands = {
   { name = "W", command = "w" },
   { name = "Wq", command = "wq" },
   { name = "WQ", command = "wq" },
-  { name = "Putmes", command = "put=execute('messages')" },
+  -- { name = "Putmes", command = "put=execute('messages')" },
+  { name = "His", command = "Noice all" },
 }
 applyCommands(commands)

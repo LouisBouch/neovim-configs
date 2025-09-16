@@ -20,7 +20,15 @@ local function helper(table, depth)
     end
     -- Formats table content in a tree structure
     if type(value) ~= "table" then
-      tree = tree .. (string.rep("  ", depth) .. prefix .. key .. ": " .. tostring(value) .. "\n")
+      tree = tree
+        .. (
+          string.rep("  ", depth)
+          .. prefix
+          .. key
+          .. ": "
+          .. tostring(value)
+          .. "\n"
+        )
     else
       tree = tree .. (string.rep("  ", depth) .. prefix .. key .. ": table\n")
       helper(value, depth + 1)

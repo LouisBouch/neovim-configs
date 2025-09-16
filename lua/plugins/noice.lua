@@ -2,8 +2,35 @@ return {
   "folke/noice.nvim",
   category = meta_h.categories.ui,
   event = "VeryLazy",
-  -- enabled = false,
   opts = {
+    commands = {
+      all = {
+        -- options for the message history that you get with `:Noice`
+        view = "split",
+        opts = { enter = true, format = "details" },
+        filter = {
+          any = {
+            { error = true },
+            { warning = true },
+            { event = "msg_show", kind = { "" } },
+            { event = "msg_show" },
+            { event = "lsp", kind = "message" },
+          },
+        },
+      },
+    },
+    format = {
+      details = {
+        "{level} ",
+        "{date} ",
+        "{event}",
+        { "{kind}", before = { ".", hl_group = "NoiceFormatKind" } },
+        " ",
+        "{title} ",
+        { "{cmdline}", after = { " -> ", hl_group = "NoiceFormatTitle" } },
+        "{message}",
+      },
+    },
     cmdline = {
       view = "cmdline",
       format = {
@@ -23,6 +50,14 @@ return {
       view_history = "messages",
       view_search = "virtualtext",
     },
+    -- routes = {
+    --   -- TODO: Fix route placing the search's virtual text in the mini view.
+    --   -- Use redirection?
+    --   {
+    --     view = "mini",
+    --     filter = { event = "msg_show" },
+    --   },
+    -- },
     -- Everything bellow is disabled for now, until I know what they do.
     popupmenu = {
       enabled = false,

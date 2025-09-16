@@ -75,7 +75,16 @@ opt.pumblend = 10
 opt.pumheight = 10
 
 -- Saved options open buffer closing
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.sessionoptions = {
+  "buffers",
+  "curdir",
+  "tabpages",
+  "winsize",
+  "help",
+  "globals",
+  "skiprtp",
+  "folds",
+}
 
 -- Shifting "<<, >>" goes to nearest shiftwidth
 opt.shiftround = true
@@ -103,9 +112,6 @@ opt.shada = "'1000,<50,s10,h"
 opt.hidden = true
 
 -- -- For plugins
-
--- Formatting
-vim.b.autoformat = false
 
 -- Root specification
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }

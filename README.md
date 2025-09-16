@@ -18,10 +18,10 @@ This includes:
 To add full compatibility with a specific language, the following steps usually suffice:
 
 - Add the **language parser** to the tree-sitter
-- Add a **language server** using mason
-- Add a **formatter** using mason
-- Add a **linter** using mason
-- Add a **debugger** server using mason
+- Add a **language server** using mason and set it up with **nvim-lspconfig**
+- Add a **formatter** using mason and set it up with **conform.nvim**
+- Add a **linter** using mason and set it up with **nvim-lint**
+- Add a **debugger** server using mason and set it up with **nvim-dap**
 
 These steps can be omitted at the cost of their functionality, but language servers and tree-sitters are *highly* recommended.  
 Unfortunately, not all languages are as easy to setup, and some require extra plugins to make work.  
@@ -31,6 +31,13 @@ Unfortunately, not all languages are as easy to setup, and some require extra pl
 The following external plugins and packages are required in order to achieve full compatibility with these configs.
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [git](https://git-scm.com/downloads/linux)
+- [curl](https://curl.se/download.html) (Usually installed by default)
+- [unzip](https://infozip.sourceforge.net/UnZip.html)
+- [tar](https://www.gnu.org/software/tar/)
+- [gzip](https://www.gnu.org/software/gzip/)
+- [cargo](https://www.rust-lang.org/tools/install) (For rust)
+- [npm](https://nodejs.org/en/download) (For npm dependent projects)
 
 ## Plugins
 
@@ -42,25 +49,7 @@ This repository includes:
 - [snacks-indent](https://github.com/folke/snacks.nvim/blob/main/docs/indent.md)
 - [snacks-picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
 - [snacks-explorer](https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md)
-
-### Colorschemes: Provide color palettes to be chosen from when opening a neovim sessions.
-
-- [catppuccin](https://github.com/catppuccin/nvim)
-- [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
-- [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
-- [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
-- [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)
-- [onedark.nvim](https://github.com/navarasu/onedark.nvim)
-- [rose-pine](https://github.com/rose-pine/neovim)
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
-
-### UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.
-
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- [noice.nvim](https://github.com/folke/noice.nvim)
-  - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
-  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [snacks-input](https://github.com/folke/snacks.nvim/blob/main/docs/input.md)
 
 ### Coding: Allow faster coding with features such as snippets, autocompletion, and more.
 
@@ -81,11 +70,32 @@ This repository includes:
 - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 
+### UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.
+
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [noice.nvim](https://github.com/folke/noice.nvim)
+  - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
+
+### Colorschemes: Provide color palettes to be chosen from when opening a neovim sessions.
+
+- [catppuccin](https://github.com/catppuccin/nvim)
+- [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
+- [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
+- [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
+- [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)
+- [onedark.nvim](https://github.com/navarasu/onedark.nvim)
+- [rose-pine](https://github.com/rose-pine/neovim)
+- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
+
 ### Others (mostly dependencies from other plugins)
 
+- [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [snacks.nvim](https://github.com/folke/snacks.nvim)
+- [vimtex](https://github.com/lervag/vimtex)

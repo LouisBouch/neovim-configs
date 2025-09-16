@@ -7,7 +7,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile" }, {
   command = "0r" .. vim.fn.stdpath("config") .. "/lua/templates/tex.md",
 })
 
-
 -- -- Views
 vim.api.nvim_create_augroup("view", { clear = true })
 

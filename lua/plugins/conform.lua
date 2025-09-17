@@ -5,7 +5,7 @@ return {
   lazy = false,
   config = function()
     local conform = require("conform")
-    formatters_by_ft = require("langs").formatters_by_ft
+    formatters_by_ft = require("langs.tools").formatters_by_ft
     conform.setup({
       formatters_by_ft = formatters_by_ft,
       format_on_save = function(bufnr)

@@ -1,7 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   category = meta_h.categories.treesitter,
-  enabled = true,
   build = ":TSUpdate",
   config = function()
     local treesitter = require("nvim-treesitter.configs")

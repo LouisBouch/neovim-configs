@@ -67,8 +67,8 @@ local function file_browser()
       file = 1,
     }
     table.sort(items, function(a, b)
-      pa = type_prio[a.type] or 1
-      pb = type_prio[b.type] or 1
+      local pa = type_prio[a.type] or 1
+      local pb = type_prio[b.type] or 1
       if pa ~= pb then
         return pa < pb
       end
@@ -247,8 +247,9 @@ return {
         },
         actions = {
           copy_path = function(picker, item)
-            vim.fn.setreg("+", item._path)
-            vim.notify("Copied: " .. item._path)
+            local v = item._path or item.data or item.hl_group
+            vim.fn.setreg("+", v)
+            vim.notify("Copied: " .. v)
           end,
           trouble_open = require("trouble.sources.snacks").actions.trouble_open,
         },
@@ -352,43 +353,6 @@ return {
         Snacks.picker.highlights()
       end,
       desc = "Highlights",
-    },
-    -- LSP
-    {
-      "gd",
-      function()
-        require("snacks").picker.lsp_definitions()
-      end,
-      desc = "Goto Definition",
-    },
-    {
-      "gD",
-      function()
-        require("snacks").picker.lsp_declarations()
-      end,
-      desc = "Goto Declaration",
-    },
-    {
-      "gr",
-      function()
-        require("snacks").picker.lsp_references()
-      end,
-      nowait = true,
-      desc = "References",
-    },
-    {
-      "gI",
-      function()
-        require("snacks").picker.lsp_implementations()
-      end,
-      desc = "Goto Implementation",
-    },
-    {
-      "gy",
-      function()
-        require("snacks").picker.lsp_type_definitions()
-      end,
-      desc = "Goto T[y]pe Definition",
     },
     -- Others
     {

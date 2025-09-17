@@ -11,5 +11,5 @@ return {
       "<cmd>TodoQuickFix<cr>",
       desc = "List all todos (Todo Comments)",
     },
-  }
+  },
 }

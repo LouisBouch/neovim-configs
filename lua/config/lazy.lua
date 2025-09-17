@@ -33,6 +33,12 @@ require("lazy").setup({
   rocks = {
     enabled = false,
   },
+  performance = {
+    rtp = {
+      -- Location of lsp configs
+      paths = { vim.fn.stdpath("config") .. "/lua/langs" },
+    },
+  },
   spec = {
     -- import your plugins
     { import = "plugins" },

@@ -23,6 +23,10 @@ To add full compatibility with a specific language, the following steps usually 
 - Add a **linter** using mason and set it up with **nvim-lint**
 - Add a **debugger** server using mason and set it up with **nvim-dap**
 
+To install the tools, one can follow the established grammar [here](lua/langs/init.lua).  
+To configure it, it suffices to create a file in the correct language config diretory.  
+For example, lua's language server capabilities are set [here](TODO: ADD LINK).  
+
 These steps can be omitted at the cost of their functionality, but language servers and tree-sitters are *highly* recommended.  
 Unfortunately, not all languages are as easy to setup, and some require extra plugins to make work.  
 
@@ -38,6 +42,7 @@ The following external plugins and packages are required in order to achieve ful
 - [gzip](https://www.gnu.org/software/gzip/)
 - [cargo](https://www.rust-lang.org/tools/install) (For rust)
 - [npm](https://nodejs.org/en/download) (For npm dependent projects)
+- [imagemagick](https://imagemagick.org/) (To see images within pickers)
 
 ## Plugins
 

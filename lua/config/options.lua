@@ -111,6 +111,20 @@ vim.g.markdown_recommended_style = 0
 opt.shada = "'1000,<50,s10,h"
 opt.hidden = true
 
+-- Diagnostics
+local symbols = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { text = {}, numhl = {} }
+for type, icon in pairs(symbols) do
+  local hl = "DiagnosticSign" .. type
+  signs.text[vim.diagnostic.severity[type:upper()]] = icon
+  signs.numhl[vim.diagnostic.severity[type:upper()]] = hl
+end
+vim.diagnostic.config({
+  severity_sort = true,
+  virtual_lines = true,
+  signs = signs,
+})
+
 -- -- For plugins
 
 -- Root specification

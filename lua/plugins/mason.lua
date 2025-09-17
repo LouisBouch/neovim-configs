@@ -20,8 +20,8 @@ return {
       "williamboman/mason.nvim",
     },
     config = function()
-      ensure_installed = require("langs").mason_all
-      opts = {
+      local ensure_installed = require("langs.tools").mason_all
+      local opts = {
         ensure_installed = ensure_installed,
       }
       require("mason-tool-installer").setup(opts)

@@ -9,20 +9,27 @@ return {
   opts = {
     constrain_cursor = "name",
     columns = {
-    "icon",
-    "permissions",
-    {"size", highlight = "OilHidden"},
-    {"mtime", highlight = "OilHidden"},
-    {"type", highlight = "OilDir", icons = {file = "|", directory = "|", link = "|"}},
-
+      "icon",
+      "permissions",
+      { "size", highlight = "OilHidden" },
+      { "mtime", highlight = "OilHidden" },
+      {
+        "type",
+        highlight = "OilDir",
+        icons = { file = "|", directory = "|", link = "|" },
+      },
     },
     keymaps = {
       ["<A-j>"] = "actions.select",
       ["<C-g>"] = "actions.parent",
-      ["~"] = { callback = function()
-        require("oil.actions").cd.callback()
-        require("oil.actions").open_cwd.callback()
-      end, opts = { scope = "tab" }, mode = "n" },
+      ["~"] = {
+        callback = function()
+          require("oil.actions").cd.callback()
+          require("oil.actions").open_cwd.callback()
+        end,
+        opts = { scope = "tab" },
+        mode = "n",
+      },
     },
     view_options = {
       show_hidden = true,

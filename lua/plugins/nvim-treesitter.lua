@@ -5,30 +5,15 @@ return {
   build = ":TSUpdate",
   config = function()
     local treesitter = require("nvim-treesitter.configs")
-
-    -- configure treesitter
+    local ensure_installed = {
+      "regex",
+      "gitignore",
+      "query",
+    }
+    -- Merge ensure installed with list of configured filetypes/languages
+    ensure_installed = vim.tbl_deep_extend("force", ensure_installed, {})
     treesitter.setup({
-      -- Ensures language parsers are installed for the following languages
-      ensure_installed = {
-        "regex",
-        "lua",
-        "rust",
-        "latex",
-        "c",
-        "cpp",
-        "bash",
-        "vim",
-        "query",
-        "gitignore",
-        "java",
-        "html",
-        "css",
-        "python",
-        "typescript",
-        "javascript",
-        "tsx",
-        "sql",
-      },
+      ensure_installed = ensure_installed,
       -- Enable syntax highlighting
       highlight = {
         enable = true,

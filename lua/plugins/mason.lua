@@ -19,18 +19,12 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
     },
-    opts = {
-      ensure_installed = {
-        -- LSP
-        "lua-language-server", -- lspname: lua_ls
-        -- DAP
-        -- Linter
-        -- Formatter
-        "stylua",
-        "clang-format",
-        "prettier",
-        "ruff",
-      },
-    },
+    config = function()
+      ensure_installed = require("langs").mason_all
+      opts = {
+        ensure_installed = ensure_installed,
+      }
+      require("mason-tool-installer").setup(opts)
+    end,
   },
 }

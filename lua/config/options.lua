@@ -121,7 +121,7 @@ for type, icon in pairs(symbols) do
 end
 vim.diagnostic.config({
   severity_sort = true,
-  virtual_lines = true,
+  virtual_text = true,
   signs = signs,
 })
 

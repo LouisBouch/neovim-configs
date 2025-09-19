@@ -19,14 +19,13 @@ local custom_layout = {
 local function file_browser()
   local dformat = require("snacks.picker.format").file
   local dpreview = require("snacks.picker.preview").file
-  local snacks = require("snacks")
   -- Buffer info
   local current_buf = vim.api.nvim_get_current_buf()
   local buf_path = vim.api.nvim_buf_get_name(current_buf)
   local buf_dir = buf_path == "" and vim.fn.getcwd()
     or vim.fn.fnamemodify(buf_path, ":h")
   -- Used to find which items to show in the picker
-  local finder = function(opts, ctx)
+  local finder = function(_, ctx)
     local cwd = vim.fn.getcwd()
     local current_dir = ctx.picker:cwd()
     local files = vim.fn.readdir(current_dir)
@@ -39,7 +38,7 @@ local function file_browser()
         type = "directory",
       },
     }
-    for i, v in ipairs(files) do
+    for _, v in ipairs(files) do
       -- local path = current_dir .. "/" .. v
       local path = current_dir == "/" and current_dir .. v
         or current_dir .. "/" .. v
@@ -152,7 +151,6 @@ local function file_browser()
       vim.api.nvim_buf_set_lines(picker.input.win.buf, 0, -1, false, { "" })
       picker:find()
     else
-      local current_dir = vim.fn.fnamemodify(item._path, ":h")
       vim.api.nvim_set_current_win(picker.finder.filter.current_win)
       picker:close()
       vim.cmd("edit " .. item._path)
@@ -177,7 +175,7 @@ local function file_browser()
       },
     },
     layout = {
-      preview = true,
+      -- preview = true,
       layout = custom_layout,
     },
     icons = {
@@ -190,7 +188,7 @@ local function file_browser()
     format = format,
     confirm = confirm,
     actions = {
-      to_parent = function(picker, item)
+      to_parent = function(picker, _)
         local current_dir = picker:cwd():gsub("(.+)/$", "%1")
         local parent_dir = vim.fn.fnamemodify(current_dir, ":h")
         local prev_dir_name = vim.fn.fnamemodify(current_dir, ":t")
@@ -200,7 +198,7 @@ local function file_browser()
         picker:find({
           on_done = function()
             local items = picker:items()
-            for i, item in pairs(items) do
+            for _, item in pairs(items) do
               if item.file == prev_dir_name then
                 picker.list:view(item.idx)
                 require("snacks.picker.actions").list_scroll_center(picker)
@@ -209,12 +207,12 @@ local function file_browser()
           end,
         })
       end,
-      to_cwd = function(picker, item)
+      to_cwd = function(picker, _)
         local cwd = vim.fn.getcwd()
         picker:set_cwd(cwd)
         picker:find()
       end,
-      set_cwd = function(picker, item)
+      set_cwd = function(picker, _)
         local current_dir = picker:cwd()
         vim.cmd("cd " .. current_dir)
         vim.notify("Set cwd to: " .. current_dir)
@@ -246,7 +244,7 @@ return {
           },
         },
         actions = {
-          copy_path = function(picker, item)
+          copy_path = function(_, item)
             local v = item._path or item.data or item.hl_group
             vim.fn.setreg("+", v)
             vim.notify("Copied: " .. v)

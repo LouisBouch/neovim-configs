@@ -5,10 +5,10 @@ return {
   lazy = false,
   config = function()
     local conform = require("conform")
-    formatters_by_ft = require("langs.tools").formatters_by_ft
+    local formatters_by_ft = require("langs.tools").formatters_by_ft
     conform.setup({
       formatters_by_ft = formatters_by_ft,
-      format_on_save = function(bufnr)
+      format_on_save = function(_)
         -- Disable formatting when specified
         if
           vim.b.autoformat or (vim.b.autoformat == nil and vim.g.autoformat)
@@ -18,7 +18,6 @@ return {
             lsp_format = "fallback",
           }
         end
-        return
       end,
     })
     -- Don't auto format

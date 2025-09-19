@@ -23,8 +23,8 @@ return {
       lualine_x = {
         -- Moves the messages that used to appear in the command line in
         -- lualine instead.
-        -- TODO: Add hop's waiting for input message
         -- Shows mode. Useful with macros (recording @a)
+        -- TODO: Add hop's waiting for input message and figure out why warning appears.
         {
           require("noice").api.status.mode.get,
           cond = require("noice").api.status.mode.has,

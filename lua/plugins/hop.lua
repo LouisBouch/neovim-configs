@@ -23,7 +23,6 @@ return {
     -- It is essentially a copy-paste from the docs with an added
     -- `target.cursor.col = target.cursor.col - 1` to ensure text is pasted before the target.
     local paste_before_char1 = function(opts_temp)
-      local hop = require("hop")
       local jump_target = require("hop.jump_target")
       local jump_regex = require("hop.jump_regex")
 
@@ -123,6 +122,7 @@ return {
       mode = { "n", "v" },
       "<A-y>",
       function()
+        ---@diagnostic disable-next-line: missing-parameter
         require("hop-yank").yank_char1()
         -- The warning comes from an error within neovim's api.
         -- getreg should accept 3 parameters
@@ -137,6 +137,7 @@ return {
       mode = { "n", "v" },
       "<A-p>",
       function()
+        ---@diagnostic disable-next-line: missing-parameter
         require("hop-yank").paste_char1()
       end,
       desc = "Paste from afar",

@@ -103,5 +103,9 @@ local mappings = {
   { mode = { "n", "v" }, lhs = "m", rhs = "d" },
   { mode = { "n", "v" }, lhs = "M", rhs = "D" },
   { mode = { "n", "v" }, lhs = "gm", rhs = "m" },
+
+  -- Add new lines while in normal mode.
+  { mode = { "n" }, lhs = "<A-o>", rhs = "o<Esc>" },
+  { mode = { "n" }, lhs = "<A-O>", rhs = "O<Esc>" },
 }
 applyKeymaps(mappings)

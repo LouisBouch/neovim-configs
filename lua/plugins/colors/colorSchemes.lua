@@ -39,6 +39,7 @@ local colorSchemes = {
   },
   { { "navarasu/onedark.nvim" }, variants = { "onedark" } },
   { { "sainnhe/gruvbox-material" }, variants = { "gruvbox-material" } },
+  { { "sharpchen/Eva-Theme.nvim" }, variants = { "Eva-Dark-Bold" } },
 }
 
 -- List of urls

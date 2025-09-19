@@ -8,6 +8,7 @@
 ---@field ui Category
 ---@field coding Category
 ---@field editor Category
+---@field util Category
 ---@field formatting Category
 ---@field linting Category
 ---@field lsp Category

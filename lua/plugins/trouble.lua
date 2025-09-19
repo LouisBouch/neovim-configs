@@ -14,6 +14,16 @@ return {
       "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
       desc = "Buffer Diagnostics (Trouble)",
     },
+    {
+      "]d",
+        function()vim.diagnostic.jump({ count = 1, float = true })end,
+      desc = "Go to next diagnostic",
+    },
+    {
+      "[d",
+        function()vim.diagnostic.jump({ count = -1, float = true })end,
+      desc = "Go to previous diagnostic",
+    },
     -- Test the following commands before accepting the mappings.
     -- {
     --   "<leader>cs",

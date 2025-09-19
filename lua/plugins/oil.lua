@@ -1,11 +1,10 @@
 return {
   "stevearc/oil.nvim",
+  category = meta_h.categories.editor,
+  dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
   ---@module 'oil'
   ---@type oil.SetupOpts
   -- Personal type, ignore warning.
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  category = meta_h.categories.editor,
-  dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
   opts = {
     constrain_cursor = "name",
     columns = {
@@ -42,9 +41,11 @@ return {
         local bufnr = vim.fn.winbufnr(winid)
         local cwd = vim.fn.getcwd(winid)
         local cur_path = require("oil").get_current_dir(bufnr)
-        local rel_path = vim.fs.relpath(cwd, cur_path)
-        rel_path = ((rel_path ~= nil) and "./" .. rel_path) or cur_path
-        rel_path = rel_path:gsub("%.$", "")
+        local rel_path = vim.fs.relpath(cwd, cur_path or "/")
+        rel_path = (((rel_path ~= nil) and "./" .. rel_path) or cur_path):gsub(
+          "%.$",
+          ""
+        )
         return rel_path
       end,
       -- preview_split: Split direction: "auto", "left", "right", "above", "below".

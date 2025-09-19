@@ -22,9 +22,11 @@
 ---@field linters? Tool[] List of linters
 ---@field lang_servs? Tool[] Language server(s) (Almost always just one)
 ---@field debug_adps? Tool[] Debug adapter(s) (Almost always just one)
----@type table<string, Filetype>
+
 local M = {}
+
 -- List of language servers/debug adapters/... for each filetype
+---@type table<string, Filetype>
 M.ft_cfgs = {
   lua = { -- Lua, .lua
     parser = "lua",
@@ -114,7 +116,7 @@ end
 -- Helper methods to fetch required values from fts
 local function get_parsers(M)
   local parsers = { set = {}, list = {} }
-  for ft, info in pairs(M.ft_cfgs) do
+  for _, info in pairs(M.ft_cfgs) do
     add(parsers, info.parser)
   end
   return parsers.list
@@ -161,6 +163,7 @@ end
 local function get_fts(M)
   local fts = {}
   for ft, _ in pairs(M.ft_cfgs) do
+    table.insert(fts, ft)
   end
   return fts
 end
@@ -178,6 +181,8 @@ end
 
 M.parsers = get_parsers(M)
 M.fts = get_fts(M)
+
+
 
 M.mason_formatters = get_tools(M, M.types.formatters, false)
 M.mason_linters = get_tools(M, M.types.linters, false)

@@ -5,7 +5,6 @@ return {
   version = "^2",
   category = meta_h.categories.lsp,
   config = function()
-    local vim = vim or {}
     -- Define keybindings for LSP
     vim.api.nvim_create_augroup("LSP", { clear = true })
     vim.api.nvim_create_autocmd({ "LspAttach" }, {

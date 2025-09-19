@@ -94,7 +94,7 @@ local function file_browser()
         ret[2][1] = "."
         local rel_path = vim.fs.relpath(vim.fn.getcwd(), picker:cwd())
         local path_print = (
-          (rel_path and " ~/" .. rel_path) or " " .. picker:cwd()
+          rel_path and (" ~/" .. rel_path) or (" " .. picker:cwd())
         )
         ret[3] = { path_print, "SnacksPickerPathHidden", virtual = true }
       end

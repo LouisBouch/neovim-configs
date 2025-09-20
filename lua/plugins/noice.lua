@@ -6,13 +6,14 @@ return {
     commands = {
       all = {
         -- options for the message history that you get with `:Noice`
-        view = "split",
+        view = "popup",
         opts = { enter = true, format = "details" },
         filter = {
           any = {
             { error = true },
             { warning = true },
-            { event = "msg_show", kind = { "" } },
+            { cmdline = true },
+            { event = "notify" },
             { event = "msg_show" },
             { event = "lsp", kind = "message" },
           },
@@ -40,15 +41,18 @@ return {
         filter = false,
         lua = false,
         help = false,
-        input = false,
+        -- input = false,
       },
     },
     messages = {
-      view = "mini",
-      view_error = "mini",
-      view_warn = "mini",
+      view = "notify",
+      view_error = "notify",
+      view_warn = "notify",
       view_history = "messages",
       view_search = "virtualtext",
+    },
+    notify = {
+      view = "notify",
     },
     -- routes = {
     --   -- TODO: Fix route placing the search's virtual text in the mini view.
@@ -67,10 +71,6 @@ return {
       enabled = false,
       view = "popup",
       filter = { event = "msg_show" },
-    },
-    notify = {
-      enabled = false,
-      view = "cmdline",
     },
     lsp = {
       enabled = false,

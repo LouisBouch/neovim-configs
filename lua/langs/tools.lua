@@ -117,9 +117,9 @@ local function add(t, i)
 end
 
 -- Helper methods to fetch required values from fts
-local function get_parsers(M)
+local function get_parsers(cfgs)
   local parsers = { set = {}, list = {} }
-  for _, info in pairs(M.ft_cfgs) do
+  for _, info in pairs(cfgs.ft_cfgs) do
     add(parsers, info.parser)
   end
   return parsers.list
@@ -135,13 +135,13 @@ M.types = {
 }
 
 ---Fetch the list of required tools.
----@param M table<string, Filetype> The table of file type
+---@param cfgs table<string, Filetype> The table of file type
 ---@param tool_type ToolType Type of the tools (formatter, linter, ...)
 ---@param use_plugin_name boolean Whether to use the plugin name if available
 ---@return string[] A list containing the list of unique tool names
-local function get_tools(M, tool_type, use_plugin_name)
+local function get_tools(cfgs, tool_type, use_plugin_name)
   local tool_list = { set = {}, list = {} }
-  for _, lists in pairs(M.ft_cfgs) do
+  for _, lists in pairs(cfgs.ft_cfgs) do
     for _, l in pairs(lists[tool_type] or {}) do
       add(tool_list, use_plugin_name and l.plugin_name or l.mason_name)
     end
@@ -149,37 +149,23 @@ local function get_tools(M, tool_type, use_plugin_name)
   return tool_list.list
 end
 
-local function get_formatters_by_ft(M)
-  local formatters_by_ft = {}
-  for ft, lists in pairs(M.ft_cfgs) do
-    local formatters = {}
-    for _, f in pairs(lists.formatters or {}) do
-      table.insert(formatters, f.plugin_name or f.mason_name)
+local function get_tools_by_ft(cfgs, tool)
+  local tools_by_ft = {}
+  for ft, lists in pairs(cfgs.ft_cfgs) do
+    local tools = {}
+    for _, f in pairs(lists[tool] or {}) do
+      table.insert(tools, f.plugin_name or f.mason_name)
     end
-    if #formatters > 0 then
-      formatters_by_ft[ft] = formatters
-    end
-  end
-  return formatters_by_ft
-end
-
-local function get_linters_by_ft(m)
-  local linters_by_ft = {}
-  for ft, lists in pairs(m.ft_cfgs) do
-    local linters = {}
-    for _, f in pairs(lists.linters or {}) do
-      table.insert(linters, f.plugin_name or f.mason_name)
-    end
-    if #linters > 0 then
-      linters_by_ft[ft] = linters
+    if #tools > 0 then
+      tools_by_ft[ft] = tools
     end
   end
-  return linters_by_ft
+  return tools_by_ft
 end
 
-local function get_fts(M)
+local function get_fts(cfgs)
   local fts = {}
-  for ft, _ in pairs(M.ft_cfgs) do
+  for ft, _ in pairs(cfgs.ft_cfgs) do
     table.insert(fts, ft)
   end
   return fts
@@ -215,6 +201,6 @@ M.linters = get_tools(M, M.types.linters, true)
 M.lang_servs = get_tools(M, M.types.lang_servs, true)
 M.debug_adps = get_tools(M, M.types.debug_adps, true)
 
-M.formatters_by_ft = get_formatters_by_ft(M)
-M.linters_by_ft = get_linters_by_ft(M)
+M.formatters_by_ft = get_tools_by_ft(M, M.types.formatters)
+M.linters_by_ft = get_tools_by_ft(M, M.types.linters)
 return M

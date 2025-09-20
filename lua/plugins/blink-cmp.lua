@@ -1,7 +1,10 @@
 -- More configs: https://cmp.saghen.dev/installation
 return {
   "saghen/blink.cmp",
-  dependencies = { "rafamadriz/friendly-snippets" },
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    { "L3MON4D3/LuaSnip", version = "^2" },
+  },
   version = "^1",
   category = meta_h.categories.coding,
   ---@module 'blink.cmp'
@@ -12,8 +15,11 @@ return {
       ["<A-j>"] = { "select_and_accept" },
       ["<C-e>"] = { "cancel" },
     },
+    snippets = {
+      preset = "luasnip",
+    },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer"},
+      default = { "lsp", "path", "snippets", "buffer" },
       per_filetype = {
         lua = { inherit_defaults = true, "lazydev" },
       },

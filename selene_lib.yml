@@ -1,0 +1,11 @@
+base: lua51 # We will be extending off of Lua 5.1.
+
+
+# Add globals defined within the neovim configs
+globals:
+  vim:
+    any: true
+  Snacks:
+    any: true
+  meta_h:
+    any: true

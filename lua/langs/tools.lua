@@ -31,13 +31,16 @@ M.ft_cfgs = {
   lua = { -- Lua, .lua
     parser = "lua",
     formatters = { { mason_name = "stylua" } },
+    linters = { { mason_name = "selene" } },
     lang_servs = {
       { mason_name = "lua-language-server", plugin_name = "lua_ls" },
     },
   },
   rust = { -- Rust, .rs
     parser = "rust",
-    lang_servs = { { mason_name = "rust-analyzer", plugin_name = "rust_analyzer" } },
+    lang_servs = {
+      { mason_name = "rust-analyzer", plugin_name = "rust_analyzer" },
+    },
   },
   c = { -- C, .c .h
     parser = "c",
@@ -160,6 +163,20 @@ local function get_formatters_by_ft(M)
   return formatters_by_ft
 end
 
+local function get_linters_by_ft(m)
+  local linters_by_ft = {}
+  for ft, lists in pairs(m.ft_cfgs) do
+    local linters = {}
+    for _, f in pairs(lists.linters or {}) do
+      table.insert(linters, f.plugin_name or f.mason_name)
+    end
+    if #linters > 0 then
+      linters_by_ft[ft] = linters
+    end
+  end
+  return linters_by_ft
+end
+
 local function get_fts(M)
   local fts = {}
   for ft, _ in pairs(M.ft_cfgs) do
@@ -182,8 +199,6 @@ end
 M.parsers = get_parsers(M)
 M.fts = get_fts(M)
 
-
-
 M.mason_formatters = get_tools(M, M.types.formatters, false)
 M.mason_linters = get_tools(M, M.types.linters, false)
 M.mason_lang_servs = get_tools(M, M.types.lang_servs, false)
@@ -201,4 +216,5 @@ M.lang_servs = get_tools(M, M.types.lang_servs, true)
 M.debug_adps = get_tools(M, M.types.debug_adps, true)
 
 M.formatters_by_ft = get_formatters_by_ft(M)
+M.linters_by_ft = get_linters_by_ft(M)
 return M

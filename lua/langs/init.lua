@@ -1,0 +1,2 @@
+-- TODO: Create feature to ensure conform, nvim-lint, nvim-dap, and treesitter can read
+-- settings in the corresponding langs/... diretories to setup their configurations.

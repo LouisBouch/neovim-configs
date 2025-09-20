@@ -156,7 +156,7 @@ local function file_browser()
       vim.cmd("edit " .. item._path)
     end
   end
-  require("snacks").picker.pick({
+  Snacks.picker.pick({
     cwd = buf_dir,
     win = {
       input = {
@@ -276,21 +276,21 @@ return {
     {
       "<leader>fr",
       function()
-        require("snacks").picker.recent()
+        Snacks.picker.recent()
       end,
       desc = "Recent",
     },
     {
       "<leader>ff",
       function()
-        require("snacks").picker.files()
+        Snacks.picker.files()
       end,
       desc = "Find Files",
     },
     {
       "<leader>fb",
       function()
-        require("snacks").picker.buffers()
+        Snacks.picker.buffers()
       end,
       desc = "Buffers",
     },
@@ -298,21 +298,21 @@ return {
     {
       "<leader>sl",
       function()
-        require("snacks").picker.lines()
+        Snacks.picker.lines()
       end,
       desc = "Buffer Lines",
     },
     {
       "<leader>sb",
       function()
-        require("snacks").picker.grep_buffers()
+        Snacks.picker.grep_buffers()
       end,
       desc = "Grep Open Buffers",
     },
     {
       "<leader>sg",
       function()
-        require("snacks").picker.grep()
+        Snacks.picker.grep()
       end,
       desc = "Grep",
     },
@@ -320,28 +320,28 @@ return {
     {
       "<leader>sr",
       function()
-        require("snacks").picker.registers()
+        Snacks.picker.registers()
       end,
       desc = "Registers",
     },
     {
       "<leader>sh",
       function()
-        require("snacks").picker.help()
+        Snacks.picker.help()
       end,
       desc = "Help Pages",
     },
     {
       "<leader>sk",
       function()
-        require("snacks").picker.keymaps()
+        Snacks.picker.keymaps()
       end,
       desc = "Keymaps",
     },
     {
       "<leader>sm",
       function()
-        require("snacks").picker.marks()
+        Snacks.picker.marks()
       end,
       desc = "Marks",
     },

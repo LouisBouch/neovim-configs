@@ -56,8 +56,41 @@ This repository includes:
 - [snacks-explorer](https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md)
 - [snacks-input](https://github.com/folke/snacks.nvim/blob/main/docs/input.md)
 
+### Linting: Manage linters with the *nvim-lint* plugin.
+
+- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+
+### Util: Contains utilities for session management, shared functionality, and other handy tools.
+
+- [mason.nvim](https://github.com/williamboman/mason.nvim)
+
+### Colorschemes: Provide color palettes to be chosen from when opening a neovim sessions.
+
+- [Eva-Theme.nvim](https://github.com/sharpchen/Eva-Theme.nvim)
+- [catppuccin](https://github.com/catppuccin/nvim)
+- [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
+- [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
+- [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
+- [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)
+- [onedark.nvim](https://github.com/navarasu/onedark.nvim)
+- [rose-pine](https://github.com/rose-pine/neovim)
+- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
+
+### UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.
+
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [noice.nvim](https://github.com/folke/noice.nvim)
+  - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
+
 ### Coding: Allow faster coding with features such as snippets, autocompletion, and more.
 
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+- [blink.cmp](https://github.com/saghen/blink.cmp)
+  - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+  - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [mini.pairs](https://github.com/nvim-mini/mini.pairs)
 - [ts-comments.nvim](https://github.com/folke/ts-comments.nvim)
 
@@ -74,33 +107,25 @@ This repository includes:
   - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
+- [vimtex](https://github.com/lervag/vimtex)
 
-### UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.
+### Formatting: Set up formatters using *conform.nvim*.
 
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- [noice.nvim](https://github.com/folke/noice.nvim)
-  - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
-  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [conform.nvim](https://github.com/stevearc/conform.nvim)
 
-### Colorschemes: Provide color palettes to be chosen from when opening a neovim sessions.
+### LSP: Configure the Language Server Protocol (LSP) client.
 
-- [catppuccin](https://github.com/catppuccin/nvim)
-- [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
-- [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
-- [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
-- [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)
-- [onedark.nvim](https://github.com/navarasu/onedark.nvim)
-- [rose-pine](https://github.com/rose-pine/neovim)
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
+- [lazydev.nvim](https://github.com/folke/lazydev.nvim)
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 
 ### Others (mostly dependencies from other plugins)
 
-- [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
+- [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
+  - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [snacks.nvim](https://github.com/folke/snacks.nvim)
-- [vimtex](https://github.com/lervag/vimtex)
+  - [trouble.nvim](https://github.com/folke/trouble.nvim)

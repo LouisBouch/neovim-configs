@@ -1,6 +1,7 @@
 return {
   "L3MON4D3/LuaSnip",
   version = "^2",
+  category = meta_h.categories.coding,
   config = function()
     -- local luasnip = require("luasnip")
     -- Example snipppet

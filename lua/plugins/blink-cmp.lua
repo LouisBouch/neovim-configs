@@ -2,7 +2,7 @@
 return {
   "saghen/blink.cmp",
   dependencies = {
-    "rafamadriz/friendly-snippets",
+    { "rafamadriz/friendly-snippets", category = meta_h.categories.coding },
     { "L3MON4D3/LuaSnip", version = "^2" },
   },
   version = "^1",

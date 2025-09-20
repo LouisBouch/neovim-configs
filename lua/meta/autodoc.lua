@@ -99,6 +99,7 @@ local function fill_table()
     if next(plug.dependencies) ~= nil then
       local dependencies = {}
       for _, d_id in pairs(plug.dependencies) do
+        d_id = d_id[1] or d_id -- Take only name if it is a table
         local name = plug_table[d_id].name
         table.insert(dependencies, { id = d_id, name = name })
       end

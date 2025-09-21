@@ -10,6 +10,5 @@ local M = {
     command = codelldb_path,
     args = { "--port", "${port}" },
   },
-  showDisassembly = "never",
 }
 return M

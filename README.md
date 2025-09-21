@@ -1,4 +1,4 @@
-# Neovim configs to replace <sup><sub><sub><sub>*almost*</sub></sub></sup> all editors
+# Neovim configs to replace <sup><sub><sub><sub>_almost_</sub></sub></sup> all editors
 
 These configs aim to include any essential feature that could be expected from an editor alongside the benefits of using vim motions.  
 This includes:
@@ -23,14 +23,18 @@ To add full compatibility with a specific language, the following steps usually 
 - Add a **linter** using mason and set it up with **nvim-lint**
 - Add a **debugger** server using mason and set it up with **nvim-dap**
 
-To install the tools, one can follow the established grammar [here](lua/langs/init.lua).  
+To install the tools, one can follow the established grammar [here](lua/langs/tools.lua).  
 To configure it, it suffices to create a file in the correct language config diretory.  
-For example, lua's language server capabilities are set [here](TODO: ADD LINK).  
+For example:
 
-These steps can be omitted at the cost of their functionality, but language servers and tree-sitters are *highly* recommended.  
-Unfortunately, not all languages are as easy to setup, and some require extra plugins to make work.  
+- lua's formatting configs are set [here](lua/langs/formatting/stylua.lua).
+- lua's debugging configs are set [here](lua/langs/dap/debugee_configs/lua.lua) for the adapter
+  and [here](lua/langs/dap/adapter_configs/osv_lua.lua) for the debugee.
 
-### External dependencies
+These steps can be omitted at the cost of their functionality, but language servers and tree-sitters are _highly_ recommended.  
+Unfortunately, not all languages are as easy to setup, and some require extra plugins to make work.
+
+## External dependencies
 
 The following external plugins and packages are required in order to achieve full compatibility with these configs.
 
@@ -56,13 +60,35 @@ This repository includes:
 - [snacks-explorer](https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md)
 - [snacks-input](https://github.com/folke/snacks.nvim/blob/main/docs/input.md)
 
+### Formatting: Set up formatters using *conform.nvim*.
+
+- [conform.nvim](https://github.com/stevearc/conform.nvim)
+
 ### Linting: Manage linters with the *nvim-lint* plugin.
 
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 
+### UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.
+
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [noice.nvim](https://github.com/folke/noice.nvim)
+  - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
+
 ### Util: Contains utilities for session management, shared functionality, and other handy tools.
 
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
+
+### Coding: Allow faster coding with features such as snippets, autocompletion, and more.
+
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+- [blink.cmp](https://github.com/saghen/blink.cmp)
+  - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+  - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [mini.pairs](https://github.com/nvim-mini/mini.pairs)
+- [ts-comments.nvim](https://github.com/folke/ts-comments.nvim)
 
 ### Colorschemes: Provide color palettes to be chosen from when opening a neovim sessions.
 
@@ -76,28 +102,6 @@ This repository includes:
 - [rose-pine](https://github.com/rose-pine/neovim)
 - [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
 
-### UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.
-
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- [noice.nvim](https://github.com/folke/noice.nvim)
-  - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
-  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
-
-### Coding: Allow faster coding with features such as snippets, autocompletion, and more.
-
-- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-- [blink.cmp](https://github.com/saghen/blink.cmp)
-  - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-  - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [mini.pairs](https://github.com/nvim-mini/mini.pairs)
-- [ts-comments.nvim](https://github.com/folke/ts-comments.nvim)
-
-### Treesitter: Provide advanced syntax highlighting and plugins that use Treesitter parsers.
-
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-
 ### Editor: Provide functionality like a file explorer, search and replace, fuzzy finding, git integration.
 
 - [hop.nvim](https://github.com/smoka7/hop.nvim)
@@ -109,14 +113,23 @@ This repository includes:
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 - [vimtex](https://github.com/lervag/vimtex)
 
-### Formatting: Set up formatters using *conform.nvim*.
-
-- [conform.nvim](https://github.com/stevearc/conform.nvim)
-
 ### LSP: Configure the Language Server Protocol (LSP) client.
 
 - [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+
+### DAP: Configure the Debug Adapter Protocol (DAP) client.
+
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+  - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+  - [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
+- [one-small-step-for-vimkind](https://github.com/jbyuki/one-small-step-for-vimkind)
+  - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+
+### Treesitter: Provide advanced syntax highlighting and plugins that use Treesitter parsers.
+
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 ### Others (mostly dependencies from other plugins)
 
@@ -124,6 +137,7 @@ This repository includes:
 - [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
   - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+- [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)

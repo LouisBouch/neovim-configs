@@ -9,7 +9,7 @@ return {
     conform.setup({
       formatters_by_ft = formatters_by_ft,
       format_on_save = function(_)
-        -- Disable formatting when specified
+        -- Only format on save on specific configurations
         if
           vim.b.autoformat or (vim.b.autoformat == nil and vim.g.autoformat)
         then
@@ -22,6 +22,15 @@ return {
     })
     -- Don't auto format
     vim.g.autoformat = false
+
+    -- Load extra configs per formatter. Suchs files are found in lua/langs/formatter/[myformatter]
+    local formatters = require("langs.tools").formatters
+    for _, f in ipairs(formatters) do
+      local ok, cfg = pcall(require, "langs.formatting." .. f)
+      if ok then
+        conform.formatters[f] = cfg
+      end
+    end
   end,
   keys = {
     {

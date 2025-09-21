@@ -19,6 +19,7 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
     },
+    category = meta_h.categories.util,
     config = function()
       local ensure_installed = require("langs.tools").mason_all
       local opts = {

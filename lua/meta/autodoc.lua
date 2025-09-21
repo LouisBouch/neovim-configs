@@ -12,6 +12,7 @@
 ---@field formatting Category
 ---@field linting Category
 ---@field lsp Category
+---@field dap Category
 ---@field treesitter Category
 ---@field other Category
 
@@ -35,6 +36,10 @@ local cat_def = {
   editor = {
     category = "",
     desc = "Editor: Provide functionality like a file explorer, search and replace, fuzzy finding, git integration.",
+  },
+  dap = {
+    category = "",
+    desc = "DAP: Configure the Debug Adapter Protocol (DAP) client.",
   },
   lsp = {
     category = "",

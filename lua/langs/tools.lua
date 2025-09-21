@@ -13,8 +13,8 @@
 -- each filetype, go to the corresponding ./lua/langs/...
 
 ---@class Tool
----@field mason_name string Name of the tool within Mason's registry
----@field plugin_name? string Name the plugin uses for the tool
+---@field name string Name of the tool used by the configs
+---@field mason? {name?: string} If present, install tool with mason. No name means use default plugin name
 
 ---@class Filetype
 ---@field parser? string Tree-sitter parser
@@ -30,16 +30,17 @@ local M = {}
 M.ft_cfgs = {
   lua = { -- Lua, .lua
     parser = "lua",
-    formatters = { { mason_name = "stylua" } },
-    linters = { { mason_name = "selene" } },
+    formatters = { { name = "stylua", mason = {} } },
+    linters = { { name = "selene", mason = {} } },
     lang_servs = {
-      { mason_name = "lua-language-server", plugin_name = "lua_ls" },
+      { name = "lua_ls", mason = { name = "lua-language-server" } },
     },
+    debug_adps = { { name = "osv_lua" } },
   },
   rust = { -- Rust, .rs
     parser = "rust",
     lang_servs = {
-      { mason_name = "rust-analyzer", plugin_name = "rust_analyzer" },
+      { name = "rust_analyzer", mason = { name = "rust-analyzer" } },
     },
   },
   c = { -- C, .c .h
@@ -47,20 +48,21 @@ M.ft_cfgs = {
   },
   cpp = { -- C++, .cpp .hpp
     parser = "cpp",
-    formatters = { { mason_name = "clang-format" } },
-    lang_servs = { { mason_name = "clangd" } },
+    formatters = { { name = "clang-format", mason = {} } },
+    lang_servs = { { name = "clangd", mason = {} } },
+    debug_adps = { { name = "codelldb", mason = {} } },
   },
   markdown = { -- Markdown, .md
     parser = "markdown",
-    formatters = { { mason_name = "prettier" } },
+    formatters = { { name = "prettier", mason = {} } },
   },
   css = { -- CSS, .css
     parser = "css",
-    formatters = { { mason_name = "prettier" } },
+    formatters = { { name = "prettier", mason = {} } },
   },
   html = { -- HTML, .html
     parser = "html",
-    formatters = { { mason_name = "prettier" } },
+    formatters = { { name = "prettier", mason = {} } },
   },
   sql = { -- SQL, .sql
     parser = "sql",
@@ -70,31 +72,31 @@ M.ft_cfgs = {
   },
   javascript = { -- Javascript, .js
     parser = "javascript",
-    formatters = { { mason_name = "prettier" } },
+    formatters = { { name = "prettier", mason = {} } },
   },
   javascriptreact = { -- Javascript + jsx, .jsx
     parser = "tsx",
-    formatters = { { mason_name = "prettier" } },
+    formatters = { { name = "prettier", mason = {} } },
   },
   typescript = { -- Typescript, .ts
     parser = "typescript",
-    formatters = { { mason_name = "prettier" } },
+    formatters = { { name = "prettier", mason = {} } },
   },
   typescriptreact = { -- Typescript + tsx, .tsx
     parser = "tsx",
-    formatters = { { mason_name = "prettier" } },
+    formatters = { { name = "prettier", mason = {} } },
   },
   json = { --- Json, .json
     parser = "json",
-    formatters = { { mason_name = "prettier" } },
+    formatters = { { name = "prettier", mason = {} } },
   },
   python = { -- Python, .py
     parser = "python",
-    formatters = { { mason_name = "ruff" } },
+    formatters = { { name = "ruff", mason = {} } },
   },
   tex = { -- Latex, .tex
     parser = "latex",
-    formatters = { { mason_name = "tex-fmt" } },
+    formatters = { { name = "tex-fmt", mason = {} } },
   },
   sh = { -- Bash, .sh
     parser = "bash",
@@ -137,13 +139,16 @@ M.types = {
 ---Fetch the list of required tools.
 ---@param cfgs table<string, Filetype> The table of file type
 ---@param tool_type ToolType Type of the tools (formatter, linter, ...)
----@param use_plugin_name boolean Whether to use the plugin name if available
+---@param use_mason_name boolean Whether to fetch the mason name if available
 ---@return string[] A list containing the list of unique tool names
-local function get_tools(cfgs, tool_type, use_plugin_name)
+local function get_tools(cfgs, tool_type, use_mason_name)
   local tool_list = { set = {}, list = {} }
   for _, lists in pairs(cfgs.ft_cfgs) do
     for _, l in pairs(lists[tool_type] or {}) do
-      add(tool_list, use_plugin_name and l.plugin_name or l.mason_name)
+      -- Ensures nothing is added if we require mason but mason is undefined.
+      if not (use_mason_name and not l.mason) then
+        add(tool_list, use_mason_name and (l.mason.name or l.name) or l.name)
+      end
     end
   end
   return tool_list.list
@@ -154,7 +159,7 @@ local function get_tools_by_ft(cfgs, tool)
   for ft, lists in pairs(cfgs.ft_cfgs) do
     local tools = {}
     for _, f in pairs(lists[tool] or {}) do
-      table.insert(tools, f.plugin_name or f.mason_name)
+      table.insert(tools, f.name)
     end
     if #tools > 0 then
       tools_by_ft[ft] = tools
@@ -185,10 +190,10 @@ end
 M.parsers = get_parsers(M)
 M.fts = get_fts(M)
 
-M.mason_formatters = get_tools(M, M.types.formatters, false)
-M.mason_linters = get_tools(M, M.types.linters, false)
-M.mason_lang_servs = get_tools(M, M.types.lang_servs, false)
-M.mason_debug_adps = get_tools(M, M.types.debug_adps, false)
+M.mason_formatters = get_tools(M, M.types.formatters, true)
+M.mason_linters = get_tools(M, M.types.linters, true)
+M.mason_lang_servs = get_tools(M, M.types.lang_servs, true)
+M.mason_debug_adps = get_tools(M, M.types.debug_adps, true)
 M.mason_all = merge_tables({
   M.mason_formatters,
   M.mason_linters,
@@ -196,10 +201,10 @@ M.mason_all = merge_tables({
   M.mason_debug_adps,
 })
 
-M.formatters = get_tools(M, M.types.formatters, true)
-M.linters = get_tools(M, M.types.linters, true)
-M.lang_servs = get_tools(M, M.types.lang_servs, true)
-M.debug_adps = get_tools(M, M.types.debug_adps, true)
+M.formatters = get_tools(M, M.types.formatters, false)
+M.linters = get_tools(M, M.types.linters, false)
+M.lang_servs = get_tools(M, M.types.lang_servs, false)
+M.debug_adps = get_tools(M, M.types.debug_adps, false)
 
 M.formatters_by_ft = get_tools_by_ft(M, M.types.formatters)
 M.linters_by_ft = get_tools_by_ft(M, M.types.linters)

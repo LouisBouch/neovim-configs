@@ -5,7 +5,6 @@ end
 _G.bt = function()
   Snacks.debug.backtrace()
 end
-vim.print = _G.dd
 
 -- Contains folke/snacks related plugin configurations
 return {

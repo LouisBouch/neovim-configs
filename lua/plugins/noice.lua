@@ -1,5 +1,12 @@
 return {
   "folke/noice.nvim",
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    "rcarriga/nvim-notify",
+  },
   category = meta_h.categories.ui,
   event = "VeryLazy",
   opts = {
@@ -158,11 +165,7 @@ return {
     -- ---@type NoiceFormatOptions
     -- format = {}, --- @see section on formatting
   },
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-    -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
-    --   If not available, we use `mini` as the fallback
-    "rcarriga/nvim-notify",
-  },
+  keys = {
+    { "<leader>nd", "<cmd>Noice dismiss<CR>", desc = "Dismiss all visible messages" },
+  }
 }

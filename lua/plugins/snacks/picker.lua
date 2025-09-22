@@ -156,6 +156,21 @@ local function file_browser()
       vim.cmd("edit " .. item._path)
     end
   end
+  -- Select file from which picker was opened
+  local on_show = function(picker)
+    local items = picker:items()
+    local buf = picker.finder.filter.current_buf
+    local path = vim.api.nvim_buf_get_name(buf)
+    if path == "" then
+      return
+    end
+    for _, item in pairs(items) do
+      if item._path == path then
+        picker.list:view(item.idx)
+        require("snacks.picker.actions").list_scroll_center(picker)
+      end
+    end
+  end
   Snacks.picker.pick({
     cwd = buf_dir,
     win = {
@@ -187,6 +202,7 @@ local function file_browser()
     finder = finder,
     format = format,
     confirm = confirm,
+    on_show = on_show,
     actions = {
       to_parent = function(picker, _)
         local current_dir = picker:cwd():gsub("(.+)/$", "%1")

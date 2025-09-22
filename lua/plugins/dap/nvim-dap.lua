@@ -86,6 +86,7 @@ return {
     )
     -- Debuggers are usually setup here, but may be configurated
     -- with their own plugin (like jdtls).
+    -- Here are some debugger configs https://codeberg.org/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
     -- Setup debugger adapters
     -- See: h dap-adapter

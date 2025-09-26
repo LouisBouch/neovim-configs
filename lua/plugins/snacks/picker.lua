@@ -292,7 +292,9 @@ return {
     {
       "<leader>fr",
       function()
-        Snacks.picker.recent()
+        Snacks.picker.recent({
+          filter = { paths = { [vim.fn.stdpath("data")] = true } },
+        })
       end,
       desc = "Recent",
     },

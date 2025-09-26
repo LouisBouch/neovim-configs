@@ -1,5 +1,7 @@
 -- The following languages should have language specific plugins.
 -- https://github.com/neovim/nvim-lspconfig/wiki/Language-specific-plugins
+-- Also, to check extra lsp capabilities of the buffer, run
+-- :lua vim.print(vim.lsp.buf_get_clients()[1].server_capabilities.executeCommandProvider)
 return {
   "neovim/nvim-lspconfig",
   version = "^2",

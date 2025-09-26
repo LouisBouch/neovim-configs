@@ -60,6 +60,10 @@ M.ft_cfgs = {
     parser = "css",
     formatters = { { name = "prettier", mason = {} } },
   },
+  slint = {
+    parser = "slint",
+    lang_servs = { { name = "slint_lsp", mason = { name = "slint-lsp" } } },
+  },
   html = { -- HTML, .html
     parser = "html",
     formatters = { { name = "prettier", mason = {} } },

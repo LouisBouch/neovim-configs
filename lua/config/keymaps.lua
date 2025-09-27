@@ -78,14 +78,14 @@ local mappings = {
 
   -- Revamping deletion to act like actual deletion and not cutting.
   -- Add special cutting binding.
-  { mode = { "n", "v" }, lhs = "x", rhs = '"_x' },
-  { mode = { "n", "v" }, lhs = "X", rhs = '"_X' },
-  { mode = { "n", "v" }, lhs = "c", rhs = '"_c' },
-  { mode = { "n", "v" }, lhs = "C", rhs = '"_C' },
-  { mode = { "n", "v" }, lhs = "d", rhs = '"_d' },
-  { mode = { "n", "v" }, lhs = "D", rhs = '"_D' },
-  { mode = { "n", "v" }, lhs = "s", rhs = '"_s' },
-  { mode = { "n", "v" }, lhs = "S", rhs = '"_S' },
+  { mode = { "n", "x" }, lhs = "x", rhs = '"_x' },
+  { mode = { "n", "x" }, lhs = "X", rhs = '"_X' },
+  { mode = { "n", "x" }, lhs = "c", rhs = '"_c' },
+  { mode = { "n", "x" }, lhs = "C", rhs = '"_C' },
+  { mode = { "n", "x" }, lhs = "d", rhs = '"_d' },
+  { mode = { "n", "x" }, lhs = "D", rhs = '"_D' },
+  { mode = { "n", "x" }, lhs = "s", rhs = '"_s' },
+  { mode = { "n", "x" }, lhs = "S", rhs = '"_S' },
 
   {
     mode = { "v" },

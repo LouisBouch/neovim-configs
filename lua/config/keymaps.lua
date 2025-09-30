@@ -46,7 +46,7 @@ end
 ---List of key mappings
 ---@type Keymap[]
 local mappings = {
-  { mode = { "n", "v" }, lhs = "<Space>", rhs = "<Nop>" },
+  { mode = { "n", "x" }, lhs = "<Space>", rhs = "<Nop>" },
 
   -- Extra deleting commands
   { mode = { "i", "c", "t" }, lhs = "<C-l>", rhs = "<Del>" },
@@ -59,11 +59,11 @@ local mappings = {
   },
 
   -- Movement
-  { mode = { "n", "v" }, lhs = "<C-d>", rhs = "<C-d>zz" },
-  { mode = { "n", "v" }, lhs = "<C-u>", rhs = "<C-u>zz" },
-  { mode = { "n", "v" }, lhs = "j", rhs = "gj" },
-  { mode = { "n", "v" }, lhs = "k", rhs = "gk" },
-  { mode = { "n", "v" }, lhs = "<A-w>", rhs = "100<c-w>+100<c-w>>" }, -- Full size window
+  { mode = { "n", "x" }, lhs = "<C-d>", rhs = "<C-d>zz" },
+  { mode = { "n", "x" }, lhs = "<C-u>", rhs = "<C-u>zz" },
+  { mode = { "n", "x" }, lhs = "j", rhs = "gj" },
+  { mode = { "n", "x" }, lhs = "k", rhs = "gk" },
+  { mode = { "n", "x" }, lhs = "<A-w>", rhs = "100<c-w>+100<c-w>>" }, -- Full size window
 
   -- Exit terminal mode
   {
@@ -88,24 +88,24 @@ local mappings = {
   { mode = { "n", "x" }, lhs = "S", rhs = '"_S' },
 
   {
-    mode = { "v" },
+    mode = { "x" },
     lhs = "p",
     rhs = "P",
     opts = { desc = "Don't yank text being replaced" },
   },
   {
-    mode = { "v" },
+    mode = { "x" },
     lhs = "P",
     rhs = "p",
     opts = { desc = "Yank text being replaced" },
   },
 
-  { mode = { "n", "v" }, lhs = "m", rhs = "d" },
-  { mode = { "n", "v" }, lhs = "M", rhs = "D" },
-  { mode = { "n", "v" }, lhs = "gm", rhs = "m" },
+  { mode = { "n", "x" }, lhs = "m", rhs = "d" },
+  { mode = { "n", "x" }, lhs = "M", rhs = "D" },
+  { mode = { "n", "x" }, lhs = "gm", rhs = "m" },
 
   -- Add new lines while in normal mode.
-  { mode = { "n" }, lhs = "<A-o>", rhs = "o<Esc>" },
-  { mode = { "n" }, lhs = "<A-O>", rhs = "O<Esc>" },
+  { mode = { "n" }, lhs = "<A-o>", rhs = "o<C-c>" },
+  { mode = { "n" }, lhs = "<A-O>", rhs = "O<C-c>" },
 }
 applyKeymaps(mappings)

@@ -93,6 +93,7 @@ M.ft_cfgs = {
   json = { --- Json, .json
     parser = "json",
     formatters = { { name = "prettier", mason = {} } },
+    linters = { { name = "jsonlint", mason = {} } },
   },
   python = { -- Python, .py
     parser = "python",

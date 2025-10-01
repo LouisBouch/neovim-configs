@@ -20,6 +20,8 @@ return {
       end,
     })
 
+    -- TODO: Add custom lint configs from langs/lint. Do it like it was done with conform.
+
     -- Manual linting
     vim.keymap.set("n", "<leader>li", function()
       lint.try_lint()

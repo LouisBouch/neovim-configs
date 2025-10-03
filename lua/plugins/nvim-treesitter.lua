@@ -13,7 +13,7 @@ return {
     ensure_installed = vim.tbl_deep_extend("force", ensure_installed, {})
     treesitter.setup({
       modules = {},
-      auto_install = true,
+      auto_install = false,
       sync_install = false,
       ignore_install = {},
       ensure_installed = ensure_installed,

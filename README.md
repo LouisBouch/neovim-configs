@@ -60,6 +60,45 @@ This repository includes:
 - [snacks-explorer](https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md)
 - [snacks-input](https://github.com/folke/snacks.nvim/blob/main/docs/input.md)
 
+### Coding: Allow faster coding with features such as snippets, autocompletion, and more.
+
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+- [blink.cmp](https://github.com/saghen/blink.cmp)
+  - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+  - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [mini.pairs](https://github.com/nvim-mini/mini.pairs)
+- [ts-comments.nvim](https://github.com/folke/ts-comments.nvim)
+
+### Editor: Provide functionality like a file explorer, search and replace, fuzzy finding, git integration.
+
+- [aerial.nvim](https://github.com/stevearc/aerial.nvim)
+  - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [harpoon](https://github.com/ThePrimeagen/harpoon)
+  - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
+- [hop.nvim](https://github.com/smoka7/hop.nvim)
+- [oil.nvim](https://github.com/stevearc/oil.nvim)
+  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+  - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
+  - [snacks.nvim](https://github.com/folke/snacks.nvim)
+- [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
+- [trouble.nvim](https://github.com/folke/trouble.nvim)
+- [vimtex](https://github.com/lervag/vimtex)
+
+### DAP: Configure the Debug Adapter Protocol (DAP) client.
+
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+  - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+  - [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
+- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
+  - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+  - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [one-small-step-for-vimkind](https://github.com/jbyuki/one-small-step-for-vimkind)
+  - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+
 ### Treesitter: Provide advanced syntax highlighting and plugins that use Treesitter parsers.
 
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
@@ -68,9 +107,22 @@ This repository includes:
 
 - [conform.nvim](https://github.com/stevearc/conform.nvim)
 
+### LSP: Configure the Language Server Protocol (LSP) client.
+
+- [lazydev.nvim](https://github.com/folke/lazydev.nvim)
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+
 ### Linting: Manage linters with the *nvim-lint* plugin.
 
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+
+### UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.
+
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [noice.nvim](https://github.com/folke/noice.nvim)
+  - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
 
 ### Colorschemes: Provide color palettes to be chosen from when opening a neovim sessions.
 
@@ -89,57 +141,6 @@ This repository includes:
 - [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
   - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
-
-### Coding: Allow faster coding with features such as snippets, autocompletion, and more.
-
-- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-- [blink.cmp](https://github.com/saghen/blink.cmp)
-  - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-  - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [mini.pairs](https://github.com/nvim-mini/mini.pairs)
-- [ts-comments.nvim](https://github.com/folke/ts-comments.nvim)
-
-### UI: Enhance the user interface with features such as status line, buffer line, indentation guides, dashboard, and icons.
-
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- [noice.nvim](https://github.com/folke/noice.nvim)
-  - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
-  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
-
-### Editor: Provide functionality like a file explorer, search and replace, fuzzy finding, git integration.
-
-- [aerial.nvim](https://github.com/stevearc/aerial.nvim)
-  - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- [harpoon](https://github.com/ThePrimeagen/harpoon)
-  - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [hop.nvim](https://github.com/smoka7/hop.nvim)
-- [oil.nvim](https://github.com/stevearc/oil.nvim)
-  - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-  - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
-- [trouble.nvim](https://github.com/folke/trouble.nvim)
-- [vimtex](https://github.com/lervag/vimtex)
-
-### DAP: Configure the Debug Adapter Protocol (DAP) client.
-
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
-  - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-  - [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
-- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
-  - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-  - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [one-small-step-for-vimkind](https://github.com/jbyuki/one-small-step-for-vimkind)
-  - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-
-### LSP: Configure the Language Server Protocol (LSP) client.
-
-- [lazydev.nvim](https://github.com/folke/lazydev.nvim)
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 
 ### Others (mostly dependencies from other plugins)
 

@@ -23,10 +23,25 @@
 ---@field lang_servs? Tool[] Language server(s) (Almost always just one)
 ---@field debug_adps? Tool[] Debug adapter(s) (Almost always just one)
 
+-- TODO: Add proper field types (not just "table")
+
+---@class ToolsModule
+---@field ft_cfgs table<string, Filetype> List of language servers/debug adapters/... for each filetype
+---@field parsers table
+---@field fts table
+---@field mason_formatters table
+---@field mason_linters table
+---@field mason_lang_servs table
+---@field mason_debug_adps table
+---@field mason_all table
+---@field formatters table
+---@field linters table
+---@field lang_servs table
+---@field debug_adps table
+---@field formatters_by_ft table
+---@field linters_by_ft table
 local M = {}
 
--- List of language servers/debug adapters/... for each filetype
----@type table<string, Filetype>
 M.ft_cfgs = {
   lua = { -- Lua, .lua
     parser = "lua",
@@ -106,6 +121,9 @@ M.ft_cfgs = {
   sh = { -- Bash, .sh
     parser = "bash",
   },
+  toml = { -- TOML, .toml
+    lang_servs = { { name = "tombi", mason = {} } },
+  },
   vim = { -- Vimscript, .vim
     parser = "vim",
   },
@@ -114,6 +132,7 @@ M.ft_cfgs = {
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+-- TODO: Complete type annotation
 
 -- Helper method to add item in a set
 local function add(t, i)
@@ -124,10 +143,13 @@ local function add(t, i)
 end
 
 -- Helper methods to fetch required values from fts
+---@param cfgs table<string, Filetype> The table of file type
 local function get_parsers(cfgs)
   local parsers = { set = {}, list = {} }
-  for _, info in pairs(cfgs.ft_cfgs) do
-    add(parsers, info.parser)
+  for _, info in pairs(cfgs) do
+    if info.parser then
+      add(parsers, info.parser)
+    end
   end
   return parsers.list
 end
@@ -148,7 +170,7 @@ M.types = {
 ---@return string[] A list containing the list of unique tool names
 local function get_tools(cfgs, tool_type, use_mason_name)
   local tool_list = { set = {}, list = {} }
-  for _, lists in pairs(cfgs.ft_cfgs) do
+  for _, lists in pairs(cfgs) do
     for _, l in pairs(lists[tool_type] or {}) do
       -- Ensures nothing is added if we require mason but mason is undefined.
       if not (use_mason_name and not l.mason) then
@@ -161,7 +183,7 @@ end
 
 local function get_tools_by_ft(cfgs, tool)
   local tools_by_ft = {}
-  for ft, lists in pairs(cfgs.ft_cfgs) do
+  for ft, lists in pairs(cfgs) do
     local tools = {}
     for _, f in pairs(lists[tool] or {}) do
       table.insert(tools, f.name)
@@ -175,7 +197,7 @@ end
 
 local function get_fts(cfgs)
   local fts = {}
-  for ft, _ in pairs(cfgs.ft_cfgs) do
+  for ft, _ in pairs(cfgs) do
     table.insert(fts, ft)
   end
   return fts
@@ -192,13 +214,13 @@ local function merge_tables(ts)
   return merged
 end
 
-M.parsers = get_parsers(M)
-M.fts = get_fts(M)
+M.parsers = get_parsers(M.ft_cfgs)
+M.fts = get_fts(M.ft_cfgs)
 
-M.mason_formatters = get_tools(M, M.types.formatters, true)
-M.mason_linters = get_tools(M, M.types.linters, true)
-M.mason_lang_servs = get_tools(M, M.types.lang_servs, true)
-M.mason_debug_adps = get_tools(M, M.types.debug_adps, true)
+M.mason_formatters = get_tools(M.ft_cfgs, M.types.formatters, true)
+M.mason_linters = get_tools(M.ft_cfgs, M.types.linters, true)
+M.mason_lang_servs = get_tools(M.ft_cfgs, M.types.lang_servs, true)
+M.mason_debug_adps = get_tools(M.ft_cfgs, M.types.debug_adps, true)
 M.mason_all = merge_tables({
   M.mason_formatters,
   M.mason_linters,
@@ -206,11 +228,11 @@ M.mason_all = merge_tables({
   M.mason_debug_adps,
 })
 
-M.formatters = get_tools(M, M.types.formatters, false)
-M.linters = get_tools(M, M.types.linters, false)
-M.lang_servs = get_tools(M, M.types.lang_servs, false)
-M.debug_adps = get_tools(M, M.types.debug_adps, false)
+M.formatters = get_tools(M.ft_cfgs, M.types.formatters, false)
+M.linters = get_tools(M.ft_cfgs, M.types.linters, false)
+M.lang_servs = get_tools(M.ft_cfgs, M.types.lang_servs, false)
+M.debug_adps = get_tools(M.ft_cfgs, M.types.debug_adps, false)
 
-M.formatters_by_ft = get_tools_by_ft(M, M.types.formatters)
-M.linters_by_ft = get_tools_by_ft(M, M.types.linters)
+M.formatters_by_ft = get_tools_by_ft(M.ft_cfgs, M.types.formatters)
+M.linters_by_ft = get_tools_by_ft(M.ft_cfgs, M.types.linters)
 return M

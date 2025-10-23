@@ -11,6 +11,8 @@ return {
   { import = "plugins.snacks" },
   {
     "folke/snacks.nvim",
+    -- 475fb6994794534aa2ebe31b7cfdad1944412c8a -- Last working commit.
+    -- commit = "475fb6994794534aa2ebe31b7cfdad1944412c8a",
     lazy = false,
     priority = 1000,
     opts = {

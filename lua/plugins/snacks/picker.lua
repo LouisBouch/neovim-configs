@@ -22,6 +22,7 @@ local function file_browser()
   -- Buffer info
   local current_buf = vim.api.nvim_get_current_buf()
   local buf_path = vim.api.nvim_buf_get_name(current_buf)
+  -- Used to set cwd of picker. Different from fn.getcwd()
   local buf_dir = buf_path == "" and vim.fn.getcwd()
     or vim.fn.fnamemodify(buf_path, ":h")
   -- Used to find which items to show in the picker
@@ -30,7 +31,7 @@ local function file_browser()
     local current_dir = ctx.picker:cwd()
     local files = vim.fn.readdir(current_dir)
     local items = {
-      {
+      { -- Current dir '.'
         file = "",
         text = "",
         cwd = cwd,
@@ -39,7 +40,6 @@ local function file_browser()
       },
     }
     for _, v in ipairs(files) do
-      -- local path = current_dir .. "/" .. v
       local path = current_dir == "/" and current_dir .. v
         or current_dir .. "/" .. v
       local stat = vim.uv.fs_stat(path)
@@ -85,18 +85,24 @@ local function file_browser()
       ret[#ret + 1] = { link, highlight, virtual = true }
     end
     if item.type == "directory" then
+      local resolve = function(_)
+        local resolved = {}
+        resolved[#resolved + 1] =
+          { item.text, "SnacksPickerDirectory", field = "directory" }
+        if item.text == "" then
+          resolved[1][1] = "."
+          local rel_path = vim.fs.relpath(vim.fn.getcwd(), picker:cwd())
+          local path_print = (
+            rel_path and (" ~/" .. rel_path) or (" " .. picker:cwd())
+          )
+          resolved[#resolved + 1] =
+            { path_print, "SnacksPickerPathHidden", virtual = true }
+        end
+        return resolved
+      end
       ret[1][1] = " "
       ret[1][2] = "SnacksPickerDirectory"
-      ret[2][2] = "SnacksPickerDirectory"
-      ret[2].field = "directory"
-      if ret[2][1] == "" then
-        ret[2][1] = "."
-        local rel_path = vim.fs.relpath(vim.fn.getcwd(), picker:cwd())
-        local path_print = (
-          rel_path and (" ~/" .. rel_path) or (" " .. picker:cwd())
-        )
-        ret[3] = { path_print, "SnacksPickerPathHidden", virtual = true }
-      end
+      ret[2].resolve = resolve
     end
     return ret
   end
@@ -121,9 +127,16 @@ local function file_browser()
       for i, entry in pairs(entries) do
         local line = {}
         local f_entry = format(entry, picker)
-        for col, text in ipairs(f_entry) do
-          line[col] = { text[1], text[2] }
+        for i_col, col in pairs(f_entry) do
+          line[#line + 1] = { f_entry[i_col][1], f_entry[i_col][2] }
+          if col.resolve then -- If contains resolve, then text is returned from it
+            for _, c in ipairs(col.resolve(0)) do
+              line[#line + 1] = { c[1], c[2] }
+            end
+          end
         end
+        vim.print(f_entry)
+        vim.print(f_entry[2].resolve(0))
         vim.api.nvim_buf_set_extmark(
           ctx.buf,
           ns,

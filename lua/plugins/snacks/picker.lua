@@ -135,8 +135,6 @@ local function file_browser()
             end
           end
         end
-        vim.print(f_entry)
-        vim.print(f_entry[2].resolve(0))
         vim.api.nvim_buf_set_extmark(
           ctx.buf,
           ns,

@@ -128,11 +128,12 @@ local function file_browser()
         local line = {}
         local f_entry = format(entry, picker)
         for i_col, col in pairs(f_entry) do
-          line[#line + 1] = { f_entry[i_col][1], f_entry[i_col][2] }
           if col.resolve then -- If contains resolve, then text is returned from it
             for _, c in ipairs(col.resolve(0)) do
               line[#line + 1] = { c[1], c[2] }
             end
+          else
+            line[#line + 1] = { f_entry[i_col][1], f_entry[i_col][2] }
           end
         end
         vim.api.nvim_buf_set_extmark(

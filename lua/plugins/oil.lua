@@ -35,7 +35,8 @@ return {
     },
     float = {
       -- Padding around the floating window
-      padding = 2,
+      padding = 3,
+      border = "rounded",
       -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
       get_win_title = function(winid)
         local bufnr = vim.fn.winbufnr(winid)

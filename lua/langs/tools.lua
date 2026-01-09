@@ -112,7 +112,8 @@ M.ft_cfgs = {
   },
   python = { -- Python, .py
     parser = "python",
-    formatters = { { name = "ruff", mason = {} } },
+    formatters = { { name = "ruff_format", mason = { name = "ruff" } } },
+    lang_servs = { { name = "basedpyright", mason = {} } },
   },
   tex = { -- Latex, .tex
     parser = "latex",
@@ -174,7 +175,7 @@ local function get_tools(cfgs, tool_type, use_mason_name)
     for _, l in pairs(lists[tool_type] or {}) do
       -- Ensures nothing is added if we require mason but mason is undefined.
       if not (use_mason_name and not l.mason) then
-        add(tool_list, use_mason_name and (l.mason.name or l.name) or l.name)
+        add(tool_list, (use_mason_name and (l.mason.name or l.name)) or l.name)
       end
     end
   end

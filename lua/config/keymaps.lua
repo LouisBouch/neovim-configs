@@ -61,9 +61,17 @@ local mappings = {
   -- Movement
   { mode = { "n", "x" }, lhs = "<C-d>", rhs = "<C-d>zz" },
   { mode = { "n", "x" }, lhs = "<C-u>", rhs = "<C-u>zz" },
+  { mode = { "n", "x" }, lhs = "<C-l>", rhs = "2zl" },
+  { mode = { "n", "x" }, lhs = "<C-h>", rhs = "2zh" },
+  { mode = { "n", "x" }, lhs = "<C-S-L>", rhs = "zL" },
+  { mode = { "n", "x" }, lhs = "<C-S-H>", rhs = "zH" },
   { mode = { "n", "x" }, lhs = "j", rhs = "gj" },
   { mode = { "n", "x" }, lhs = "k", rhs = "gk" },
   { mode = { "n", "x" }, lhs = "<A-w>", rhs = "100<c-w>+100<c-w>>" }, -- Full size window
+  { mode = { "n", "x" }, lhs = "<A-f>", rhs = "f" },
+  { mode = { "n", "x" }, lhs = "<A-F>", rhs = "F" },
+  { mode = { "n", "x" }, lhs = "<A-t>", rhs = "t" },
+  { mode = { "n", "x" }, lhs = "<A-T>", rhs = "T" },
 
   -- Exit terminal mode
   {
@@ -102,7 +110,7 @@ local mappings = {
 
   { mode = { "n", "x" }, lhs = "m", rhs = "d" },
   { mode = { "n", "x" }, lhs = "M", rhs = "D" },
-  { mode = { "n", "x" }, lhs = "gm", rhs = "m" },
+  { mode = { "n", "x" }, lhs = "gm", rhs = "m", opts = {desc = "Set a mark"} },
 
   -- Add new lines while in normal mode.
   { mode = { "n" }, lhs = "<A-o>", rhs = "o<C-c>" },

@@ -49,5 +49,6 @@ local commands = {
   { name = "WQ", command = "wq" },
   -- { name = "Putmes", command = "put=execute('messages')" },
   { name = "His", command = "Noice all" },
+  { name = "RecoveryDiff", command = ":diffthis | :vnew | :r # | :exe 'norm! ggdd' | :diffthis" },
 }
 applyCommands(commands)

@@ -16,6 +16,7 @@ return {
       ["<C-k>"] = false,
       ["<C-p>"] = "actions.up_and_scroll",
       ["<C-n>"] = "actions.down_and_scroll",
+      ["<A-j>"] = "actions.jump",
     },
   },
   keys = {

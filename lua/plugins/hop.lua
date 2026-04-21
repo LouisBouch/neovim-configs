@@ -76,8 +76,8 @@ return {
     },
     -- Remaps f, F, t and T
     {
-      mode = { "n", "v" },
-      "<A-f>",
+      mode = { "n", "x" },
+      "f",
       function()
         require("hop").hint_char1({
           direction = require("hop.hint").HintDirection.AFTER_CURSOR,
@@ -86,8 +86,8 @@ return {
       desc = "Searches for one character forward in the file with hop (likfe f)",
     },
     {
-      mode = { "n", "v" },
-      "<A-F>",
+      mode = { "n", "x" },
+      "F",
       function()
         require("hop").hint_char1({
           direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
@@ -96,8 +96,8 @@ return {
       desc = "Searches for one character backward in the file with hop (like F)",
     },
     {
-      mode = { "n", "v" },
-      "<A-t>",
+      mode = { "n", "x" },
+      "t",
       function()
         require("hop").hint_char1({
           direction = require("hop.hint").HintDirection.AFTER_CURSOR,
@@ -107,8 +107,8 @@ return {
       desc = "Searches for one character forward in the file with hop (like t)",
     },
     {
-      mode = { "n", "v" },
-      "<A-T>",
+      mode = { "n", "x" },
+      "T",
       function()
         require("hop").hint_char1({
           direction = require("hop.hint").HintDirection.BEFORE_CURSOR,

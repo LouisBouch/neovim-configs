@@ -49,8 +49,14 @@ opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 -- Ask for confirmation before exit without saving
 opt.confirm = true
 
--- Highlights line under cursor
+-- Highlights line under cursor and other cursor options.
 opt.cursorline = true
+vim.opt.guicursor = table.concat({
+  "n-v-c-sm:block-Cursor", -- Normal, Visual, Command, Showmatch: block cursor.
+  "i-ci-ve:ver25-Cursor", -- Insert, Command-insert, Visual-exclusive: vertical bar (25% width).
+  "r-cr-o:hor20-Cursor", -- Replace, Command-replace, Operator-pending: horizontal bar (20% height).
+  "a:blinkwait500-blinkoff500-blinkon500", -- Make all modes blink.
+}, ",")
 
 -- Folds
 opt.fillchars = {

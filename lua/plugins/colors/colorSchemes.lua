@@ -78,15 +78,8 @@ vim.api.nvim_create_autocmd("User", {
     -- Schedule is required, because autocmd signals are suppressed in this loop.
     vim.schedule(function()
       vim.cmd.colorscheme(theme)
-        -- TODO: Find better way to make text color work in kitty.
-      local c_hl = vim.api.nvim_get_hl(0, { name = "Cursor" })
-      if not c_hl.reverse then
-        local fg = string.format("#%06x", c_hl.fg)
-        local bg = string.format("#%06x", c_hl.fg)
-        vim.opt.guicursor = "a:block-Cursor"
-        io.write(string.format("\27]12;%s\7", bg))
-        io.write(string.format("\27]21;cursor_text=%s\7", fg))
-      end
+      -- Always invert color at cursor.
+      vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
     end)
   end,
 })

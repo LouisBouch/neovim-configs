@@ -55,12 +55,6 @@ return {
   },
   keys = {
     { "<leader>e", "<cmd>Oil --float<CR>", desc = "Open explorer" },
-    {
-      "<C-g>",
-      function()
-        print(vim.fn.getcwd(0))
-      end,
-    },
   },
   --
   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.

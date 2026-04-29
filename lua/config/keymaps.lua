@@ -110,10 +110,19 @@ local mappings = {
 
   { mode = { "n", "x" }, lhs = "m", rhs = "d" },
   { mode = { "n", "x" }, lhs = "M", rhs = "D" },
-  { mode = { "n", "x" }, lhs = "gm", rhs = "m", opts = {desc = "Set a mark"} },
+  { mode = { "n", "x" }, lhs = "gm", rhs = "m", opts = { desc = "Set a mark" } },
 
   -- Add new lines while in normal mode.
   { mode = { "n" }, lhs = "<A-o>", rhs = "o<C-c>" },
   { mode = { "n" }, lhs = "<A-O>", rhs = "O<C-c>" },
+
+  {
+    mode = { "n" },
+    lhs = "<C-g>",
+    rhs = function()
+      print(vim.fn.getcwd(0))
+    end,
+    opts = { desc = "Show current working directory (cwd)" },
+  },
 }
 applyKeymaps(mappings)

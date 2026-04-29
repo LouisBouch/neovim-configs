@@ -110,7 +110,12 @@ local mappings = {
 
   { mode = { "n", "x" }, lhs = "m", rhs = "d" },
   { mode = { "n", "x" }, lhs = "M", rhs = "D" },
-  { mode = { "n", "x" }, lhs = "gm", rhs = "m", opts = { desc = "Set a mark" } },
+  {
+    mode = { "n", "x" },
+    lhs = "gm",
+    rhs = "m",
+    opts = { desc = "Set a mark" },
+  },
 
   -- Add new lines while in normal mode.
   { mode = { "n" }, lhs = "<A-o>", rhs = "o<C-c>" },
@@ -120,9 +125,21 @@ local mappings = {
     mode = { "n" },
     lhs = "<C-g>",
     rhs = function()
-      print(vim.fn.getcwd(0))
+      local cwd = vim.fn.getcwd(0)
+      local slashed_cwd = cwd:gsub("/(.+)", "/%1/") -- Add / to end expect for root
+      local file_path = vim.api.nvim_buf_get_name(0)
+      local rel_path = vim.fs.relpath(cwd, file_path)
+      local path_print = rel_path
+          and {
+            { "buf: ", "@character" },
+            { slashed_cwd, "@character.special" },
+            { rel_path },
+          }
+        or { { "buf: ", "@character" }, { file_path } }
+      vim.api.nvim_echo({ { "cwd: ", "@character" }, { cwd } }, true, {})
+      vim.api.nvim_echo(path_print, true, {})
     end,
-    opts = { desc = "Show current working directory (cwd)" },
+    opts = { desc = "Show cwd and current buffer path" },
   },
 }
 applyKeymaps(mappings)
